@@ -1,12 +1,12 @@
 :root {
     --forest-green: #228B22;
-    --dark-forest: #1a6b1a;
-    --light-bg: #f4f7f4;
-    --text-dark: #2c3e50;
     --white: #ffffff;
+    --light-bg: #f8f9f8;
+    --text-color: #333;
+    --nav-height: 70px;
 }
 
-/* Reset y Estilos Base */
+/* Configuracion Base */
 * {
     margin: 0;
     padding: 0;
@@ -14,218 +14,97 @@
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: sans-serif;
     background-color: var(--light-bg);
-    color: var(--text-dark);
-    display: flex;
-    line-height: 1.6;
-    scroll-behavior: smooth;
+    color: var(--text-color);
+    display: block;
 }
 
-/* Navegación Lateral Fija */
+/* Navegacion Horizontal Superior */
 nav {
-    width: 260px;
+    width: 100%;
     background-color: var(--forest-green);
-    height: 100vh;
+    height: var(--nav-height);
     position: fixed;
-    left: 0;
     top: 0;
-    color: var(--white);
-    padding: 2rem 1rem;
+    left: 0;
     display: flex;
-    flex-direction: column;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    color: var(--white);
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 nav h1 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 nav ul {
     list-style: none;
-}
-
-nav ul li {
-    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 1rem;
 }
 
 nav ul li a {
     color: var(--white);
     text-decoration: none;
-    display: block;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    transition: background 0.3s, padding-left 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
     font-weight: 500;
 }
 
 nav ul li a:hover {
-    background-color: var(--dark-forest);
-    padding-left: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Contenedor de Contenido */
+/* Contenido Principal */
 main {
-    margin-left: 260px;
-    width: calc(100% - 260px);
+    margin-top: var(--nav-height);
     padding: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section {
+    min-height: calc(100vh - var(--nav-height) - 4rem);
+    padding: 4rem 2rem;
     background: var(--white);
-    margin-bottom: 3rem;
-    padding: 4rem 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    min-height: 80vh;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 h2 {
     color: var(--forest-green);
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 1.5rem;
-    border-left: 8px solid var(--forest-green);
-    padding-left: 1rem;
+    border-bottom: 2px solid var(--forest-green);
+    display: inline-block;
 }
 
-/* Layout de Rejilla */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.card {
-    border: 1px solid #eee;
-    padding: 2rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: #fafafa;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    border-color: var(--forest-green);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.card h3 {
-    color: var(--dark-forest);
+p {
     margin-bottom: 1rem;
 }
 
-/* Formulario */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    max-width: 600px;
-    background: #f9f9f9;
-    padding: 2rem;
-    border-radius: 8px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-label {
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-input, textarea, select {
-    padding: 0.9rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--forest-green);
-    box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.1);
-}
-
-button {
-    background-color: var(--forest-green);
-    color: white;
-    border: none;
-    padding: 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: background 0.3s;
-    margin-top: 1rem;
-}
-
-button:hover {
-    background-color: var(--dark-forest);
-}
-
-/* Opiniones */
-.testimonial {
-    background: #f8fff8;
-    border-left: 5px solid var(--forest-green);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 0 12px 12px 0;
-    font-style: italic;
-}
-
-.testimonial strong {
-    display: block;
-    margin-top: 1rem;
-    color: var(--dark-forest);
-    font-style: normal;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    nav { width: 200px; }
-    main { margin-left: 200px; width: calc(100% - 200px); }
-}
-
+/* Ajustes para Dispositivos Moviles */
 @media (max-width: 768px) {
     nav {
-        width: 100%;
+        flex-direction: column;
         height: auto;
-        position: relative;
         padding: 1rem;
     }
     nav ul {
-        display: flex;
+        margin-top: 1rem;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.5rem;
     }
     main {
-        margin-left: 0;
-        width: 100%;
-        padding: 1rem;
+        margin-top: 120px;
     }
-    section { padding: 2rem 1.5rem; }
 }
-```
-
----
-
-### Vinculación necesaria en `index.html`
-
-Para que el archivo CSS funcione, debes realizar dos cambios en tu `index.html`:
-
-1.  **Elimina** todo el bloque `<style> ... </style>`.
-2.  **Añade** la siguiente línea dentro de la etiqueta `<head>`:
-
-```html
-<link rel="stylesheet" href="styles.css">
