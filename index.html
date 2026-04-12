@@ -1,70 +1,335 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Eventos - Jardin Jako</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
 </head>
-<body onclick="handleGlobalClick(event)">
-
-    <nav>
-        <div class="nav-left">
-            <svg class="nav-home-icon" viewBox="0 0 24 24" onclick="showHomeText(event)">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </svg>
-        </div>
-        <div class="nav-links">
-            <button class="menu-btn" onclick="toggleOverlay('menu-overlay', event)">MENÚ</button>
-            <button class="menu-btn" onclick="toggleOverlay('quotes-overlay', event)">COTIZACIONES</button>
-        </div>
-    </nav>
-
-    <main id="workspace">
-        <h1 id="jardin-text">Jardin Jako</h1>
-    </main>
-
-    <div id="menu-overlay" class="overlay">
-        <div class="close-btn" onclick="toggleOverlay('menu-overlay', event)">&times;</div>
-        <h1>Menú</h1>
-        <h2>Postres</h2>
-        <ul>
-            <li>Arroz con leche</li>
-            <li>Pastel de queso</li>
-        </ul>
-    </div>
-
-    <div id="quotes-overlay" class="overlay">
-        <div class="close-btn" onclick="toggleOverlay('quotes-overlay', event)">&times;</div>
-        <h1>Cotizaciones</h1>
-        <p class="quote-text">Prepara tu cotización en Linea</p>
-    </div>
-
-    <script>
-        function handleGlobalClick(event) {
-            if (event.target.id === 'workspace') {
-                const text = document.getElementById('jardin-text');
-                text.style.display = 'block';
-            }
-        }
-
-        function toggleOverlay(id, event) {
-            if (event) event.stopPropagation();
-            document.querySelectorAll('.overlay').forEach(ov => {
-                if (ov.id !== id) ov.style.display = 'none';
-            });
-            const overlay = document.getElementById(id);
-            const isVisible = (overlay.style.display === 'flex');
-            overlay.style.display = isVisible ? 'none' : 'flex';
-        }
-
-        function showHomeText(event) {
-            if (event) event.stopPropagation();
-            document.querySelectorAll('.overlay').forEach(ov => ov.style.display = 'none');
-            const text = document.getElementById('jardin-text');
-            text.style.display = 'block';
-        }
-    </script>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="es"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Website Eventos - Jardin Jako&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 1. Configuración de Base */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body, html {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #87CEEB; /* Azul Cielo */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Caudex', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow: hidden;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 2. Barra de Navegación */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>nav {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>top: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>left: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: rgba(0, 0, 0, 0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.8rem 2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 2000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.nav-home-icon {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 40px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 40px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>fill: #000000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: transform 0.2s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.nav-links {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.menu-btn {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Caudex', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 3. Área de Trabajo Principal */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>main {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100vh;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#jardin-text {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 7rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #000000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 400;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.8s ease forwards;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 4. Overlays */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.overlay {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>top: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>left: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: rgba(135, 206, 235, 0.98); /* Azul cielo con opacidad */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: none;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>flex-direction: column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 3000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow-y: auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.close-btn {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>top: 2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>right: 2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.overlay h1 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 4rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 5. Estilos Nosotros y Contacto */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.about-text {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>max-width: 800px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>line-height: 1.4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.contact-form {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>flex-direction: column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>max-width: 500px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.contact-form input, .contact-form textarea {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.5rem 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Caudex', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>outline: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.contact-form button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Caudex', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 2px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.error-msg {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #d00;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 6. Mapa */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.map-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>max-width: 700px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>flex-direction: column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.map-container input {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Caudex', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.map-container button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>from { opacity: 0; transform: translateY(20px); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>to { opacity: 1; transform: translateY(0); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>#jardin-text { font-size: 3rem; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.overlay h1 { font-size: 2.5rem; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.about-text { font-size: 1.1rem; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body onclick="handleGlobalClick(event)"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="nav-left"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;svg class="nav-home-icon" viewBox="0 0 24 24" onclick="showHomeText(event)"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="nav-links"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button class="menu-btn" onclick="toggleOverlay('nosotros-overlay', event)"&gt;NOSOTROS&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button class="menu-btn" onclick="toggleOverlay('menu-overlay', event)"&gt;MENÚ&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button class="menu-btn" onclick="toggleOverlay('quotes-overlay', event)"&gt;COTIZACIONES&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button class="menu-btn" onclick="toggleOverlay('direccion-overlay', event)"&gt;DIRECCIÓN&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;main id="workspace"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1 id="jardin-text"&gt;Jardin Jako&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Nosotros &amp; Contacto --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="nosotros-overlay" class="overlay"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="close-btn" onclick="toggleOverlay('nosotros-overlay', event)"&gt;&amp;times;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Nosotros&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p class="about-text"&gt;Con más de 15 años de trabajo y cuidado en cada detalle de nuestro Jardín hemos creado un espacio verde, tranquilo y hermoso para que disfrutes algunos de los momentos más importantes de tu vida. Si tienes más dudas o preguntas puedes llenar nuestro formulario de contacto.&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;form class="contact-form" id="contactForm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="text" id="nombre" placeholder="NOMBRE" required&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="email" id="email" placeholder="EMAIL" required&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;textarea id="pregunta" placeholder="PREGUNTA" rows="3" required&gt;&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button type="button" onclick="validateAndSend()"&gt;ENVIAR CONSULTA&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p id="form-message" class="error-msg"&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Menú --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="menu-overlay" class="overlay"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="close-btn" onclick="toggleOverlay('menu-overlay', event)"&gt;&amp;times;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Menú&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Postres&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;li&gt;Arroz con leche&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;li&gt;Pastel de queso&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Cotizaciones --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="quotes-overlay" class="overlay"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="close-btn" onclick="toggleOverlay('quotes-overlay', event)"&gt;&amp;times;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Cotizaciones&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p class="quote-text"&gt;Prepara tu cotización en Linea&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Dirección y Mapa --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="direccion-overlay" class="overlay"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="close-btn" onclick="toggleOverlay('direccion-overlay', event)"&gt;&amp;times;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Dirección&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="map-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="text" id="addressInput" placeholder="INGRESA LA DIRECCIÓN DEL JARDÍN"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button onclick="updateMap()"&gt;ACTUALIZAR MAPA&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;iframe id="googleMap"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15050.0!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjQiTiA5OcKwMDgnMDAuMCJX!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"&gt;&lt;/iframe&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function handleGlobalClick(event) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (event.target.id === 'workspace') {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const text = document.getElementById('jardin-text');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>text.style.display = 'block';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function toggleOverlay(id, event) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (event) event.stopPropagation();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.overlay').forEach(ov =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (ov.id !== id) ov.style.display = 'none';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const overlay = document.getElementById(id);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const isVisible = (overlay.style.display === 'flex');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overlay.style.display = isVisible ? 'none' : 'flex';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function showHomeText(event) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (event) event.stopPropagation();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.overlay').forEach(ov =&gt; ov.style.display = 'none');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const text = document.getElementById('jardin-text');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text.style.display = 'block';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function validateAndSend() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const emailInput = document.getElementById('email');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const email = emailInput.value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const message = document.getElementById('form-message');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Regex para proveedores reconocidos (gmail, outlook, hotmail, yahoo, icloud)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const recognizedProviders = /@(gmail|outlook|hotmail|yahoo|icloud)\./i;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!emailRegex.test(email)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>message.style.color = "#d00";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>message.innerText = "Dirección de correo no válida.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!recognizedProviders.test(email)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>message.style.color = "#d00";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>message.innerText = "Por favor, usa un proveedor reconocido (Gmail, Outlook, etc.).";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>message.style.color = "green";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>message.innerText = "Formulario enviado correctamente.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function updateMap() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const address = document.getElementById('addressInput').value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (address) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const mapIframe = document.getElementById('googleMap');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const encodedAddress = encodeURIComponent(address);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>mapIframe.src = `https://maps.google.com/maps?q=${encodedAddress}&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 </body>
 </html>
