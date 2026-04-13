@@ -1,181 +1,353 @@
-/* 1. Configuración de Base */
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #87CEEB; /* Azul Cielo */
-    font-family: 'Caudex', serif;
-    overflow: hidden; 
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardín Jako - Sitio Oficial</title>
+    <!-- Importación de Fuente Caudex -->
+    <link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS Consolidados */
+        :root {
+            --sky-blue: #87CEEB;
+            --overlay-bg: rgba(135, 206, 235, 0.98);
+            --black: #000000;
+            --white-trans: rgba(255, 255, 255, 0.2);
+        }
 
-/* 2. Barra de Navegación */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 0.8rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2000;
-    box-sizing: border-box;
-}
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--sky-blue);
+            font-family: 'Caudex', serif;
+            overflow: hidden;
+            color: var(--black);
+        }
 
-.nav-home-icon {
-    width: 40px;
-    height: 40px;
-    fill: #000000;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
+        /* Navegación Superior */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white-trans);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
 
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
-}
+        .nav-home-icon {
+            width: 35px;
+            height: 35px;
+            fill: var(--black);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
 
-.menu-btn {
-    background: none;
-    border: none;
-    color: #000;
-    font-family: 'Caudex', serif;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    padding: 0.5rem;
-    text-transform: uppercase;
-}
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
 
-/* 3. Área de Trabajo Principal */
-main {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--black);
+            font-family: 'Caudex', serif;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            padding: 0.5rem;
+        }
 
-#jardin-text {
-    display: none;
-    font-size: 7rem;
-    color: #000000;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 8px;
-    animation: fadeIn 0.8s ease forwards;
-    text-align: center;
-}
+        /* Área Principal de Interacción */
+        main {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
 
-/* 4. Overlays */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(135, 206, 235, 0.98);
-    display: none; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 3000;
-    text-align: center;
-    padding: 2rem;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
+        #jardin-text {
+            display: none;
+            font-size: clamp(3rem, 10vw, 7rem);
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            animation: fadeIn 0.8s ease forwards;
+            pointer-events: none;
+            text-align: center;
+        }
 
-.close-btn {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 2.5rem;
-    color: #000;
-    cursor: pointer;
-}
+        /* Pantallas Superpuestas (Overlays) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--overlay-bg);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
 
-.overlay h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            cursor: pointer;
+        }
 
-/* 5. Estilos Nosotros y Contacto */
-.about-text {
-    max-width: 800px;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    margin-bottom: 2rem;
-}
+        .content-box {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 500px;
-}
+        /* Sección Nosotros y Formulario */
+        .nosotros-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
 
-.contact-form input, .contact-form textarea {
-    padding: 0.5rem 0;
-    border: none;
-    border-bottom: 1px solid #000;
-    background: transparent;
-    font-family: 'Caudex', serif;
-    font-size: 1.2rem;
-    outline: none;
-}
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
 
-.contact-form button {
-    padding: 1rem;
-    background: transparent;
-    border: 1px solid #000;
-    cursor: pointer;
-    font-family: 'Caudex', serif;
-    letter-spacing: 2px;
-}
+        .contact-form input, .contact-form textarea {
+            padding: 0.8rem 0;
+            border: none;
+            border-bottom: 1px solid var(--black);
+            background: transparent;
+            font-family: 'Caudex', serif;
+            font-size: 1.1rem;
+            outline: none;
+        }
 
-.error-msg {
-    color: #d00;
-    font-size: 1rem;
-    margin-top: 0.5rem;
-}
+        .contact-form button {
+            background: var(--black);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
 
-/* 6. Mapa */
-.map-container {
-    width: 100%;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+        .status-msg {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
 
-.map-container input {
-    padding: 0.5rem;
-    border: none;
-    border-bottom: 1px solid #000;
-    background: transparent;
-    font-family: 'Caudex', serif;
-}
+        /* Mapa y Ubicación */
+        .map-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
 
-.map-container button {
-    padding: 0.5rem;
-    border: 1px solid #000;
-    background: transparent;
-    cursor: pointer;
-}
+        .map-search {
+            display: flex;
+            gap: 0.5rem;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        .map-search input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--black);
+            background: transparent;
+            font-family: 'Caudex', serif;
+        }
 
-@media (max-width: 768px) {
-    #jardin-text { font-size: 3rem; }
-    .overlay h1 { font-size: 2.5rem; }
-    .about-text { font-size: 1.1rem; }
-}
+        .map-search button {
+            background: var(--black);
+            color: #fff;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+        }
+
+        #map-iframe {
+            width: 100%;
+            height: 400px;
+            border: 1px solid var(--black);
+        }
+
+        /* Animación */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 0.5rem; }
+            .menu-btn { font-size: 0.7rem; }
+            .map-search { flex-direction: column; }
+        }
+    </style>
+</head>
+<body onclick="handleWorkspaceClick(event)">
+
+    <nav>
+        <div class="nav-left">
+            <svg class="nav-home-icon" viewBox="0 0 24 24" onclick="resetToHome(event)">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+        </div>
+        <div class="nav-links">
+            <button class="menu-btn" onclick="showOverlay('nosotros', event)">Nosotros</button>
+            <button class="menu-btn" onclick="showOverlay('menu', event)">Menú</button>
+            <button class="menu-btn" onclick="showOverlay('cotizaciones', event)">Cotizaciones</button>
+            <button class="menu-btn" onclick="showOverlay('direccion', event)">Dirección</button>
+        </div>
+    </nav>
+
+    <main id="workspace">
+        <h1 id="jardin-text">Jardín Jako</h1>
+    </main>
+
+    <!-- Overlay: Nosotros & Contacto -->
+    <div id="nosotros" class="overlay">
+        <div class="close-btn" onclick="hideAllOverlays(event)">&times;</div>
+        <div class="content-box">
+            <h1>Nosotros</h1>
+            <p class="nosotros-text">
+                Con más de 15 años de trabajo y cuidado en cada detalle de nuestro Jardín hemos creado un espacio verde, tranquilo y hermoso para que disfrutes algunos de los momentos más importantes de tu vida. Si tienes más dudas o preguntas puedes llenar nuestro formulario de contacto.
+            </p>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="nombre" placeholder="NOMBRE" required>
+                <input type="email" id="email" placeholder="EMAIL" required>
+                <textarea id="pregunta" placeholder="PREGUNTA" rows="3" required></textarea>
+                <button type="button" onclick="validateForm()">Enviar Mensaje</button>
+                <div id="formStatus" class="status-msg"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Overlay: Menú -->
+    <div id="menu" class="overlay">
+        <div class="close-btn" onclick="hideAllOverlays(event)">&times;</div>
+        <div class="content-box">
+            <h1>Nuestro Menú</h1>
+            <ul style="list-style: none; padding: 0; font-size: 1.8rem; line-height: 2.5;">
+                <li>ARROZ CON LECHE</li>
+                <li>PASTEL DE QUESO</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Overlay: Cotizaciones -->
+    <div id="cotizaciones" class="overlay">
+        <div class="close-btn" onclick="hideAllOverlays(event)">&times;</div>
+        <div class="content-box">
+            <h1>Cotizaciones</h1>
+            <p style="font-size: 1.6rem; letter-spacing: 4px;">SOLICITA TU PRESUPUESTO PERSONALIZADO</p>
+        </div>
+    </div>
+
+    <!-- Overlay: Dirección & Mapa -->
+    <div id="direccion" class="overlay">
+        <div class="close-btn" onclick="hideAllOverlays(event)">&times;</div>
+        <div class="content-box">
+            <h1>Ubicación</h1>
+            <div class="map-section">
+                <div class="map-search">
+                    <input type="text" id="addressInput" placeholder="INGRESA LA DIRECCIÓN DEL JARDÍN">
+                    <button onclick="updateMap()">BUSCAR</button>
+                </div>
+                <iframe id="map-iframe" src="https://maps.google.com/maps?q=Mexico%20City&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar el texto al hacer clic en el fondo
+        function handleWorkspaceClick(event) {
+            if (event.target.id === 'workspace') {
+                document.getElementById('jardin-text').style.display = 'block';
+            }
+        }
+
+        // Mostrar sección específica
+        function showOverlay(id, event) {
+            if (event) event.stopPropagation();
+            hideAllOverlays();
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        // Ocultar todas las secciones
+        function hideAllOverlays(event) {
+            if (event) event.stopPropagation();
+            document.querySelectorAll('.overlay').forEach(ov => ov.style.display = 'none');
+        }
+
+        // Resetear a la vista Home
+        function resetToHome(event) {
+            if (event) event.stopPropagation();
+            hideAllOverlays();
+            document.getElementById('jardin-text').style.display = 'block';
+        }
+
+        // Lógica de Validación de Email
+        function validateForm() {
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const status = document.getElementById('formStatus');
+            
+            // Regex de formato estándar
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            // Dominios permitidos
+            const trustedProviders = ['gmail.com', 'outlook.com', 'hotmail.com', 'yahoo.com', 'icloud.com'];
+
+            if (!emailPattern.test(email)) {
+                status.innerText = "Error: El formato del correo es inválido.";
+                status.style.color = "#8B0000";
+                return;
+            }
+
+            const domain = email.split('@')[1];
+            if (!trustedProviders.includes(domain)) {
+                status.innerText = "Error: Por favor usa un proveedor reconocido (Gmail, Outlook, etc.).";
+                status.style.color = "#8B0000";
+                return;
+            }
+
+            status.innerText = "✓ Mensaje enviado correctamente.";
+            status.style.color = "#006400";
+            document.getElementById('contactForm').reset();
+        }
+
+        // Actualización dinámica del Mapa
+        function updateMap() {
+            const address = document.getElementById('addressInput').value;
+            if (address.trim() !== "") {
+                const encoded = encodeURIComponent(address);
+                document.getElementById('map-iframe').src = `https://maps.google.com/maps?q=${encoded}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+            }
+        }
+    </script>
+</body>
+</html>
