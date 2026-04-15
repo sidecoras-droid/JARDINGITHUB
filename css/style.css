@@ -1,181 +1,204 @@
-/* 1. Configuración de Base */
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #87CEEB; /* Azul Cielo */
-    font-family: 'Caudex', serif;
-    overflow: hidden; 
-}
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-/* 2. Barra de Navegación */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 0.8rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2000;
-    box-sizing: border-box;
-}
-
-.nav-home-icon {
-    width: 40px;
-    height: 40px;
-    fill: #000000;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.menu-btn {
-    background: none;
-    border: none;
-    color: #000;
-    font-family: 'Caudex', serif;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    padding: 0.5rem;
-    text-transform: uppercase;
-}
-
-/* 3. Área de Trabajo Principal */
-main {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-#jardin-text {
-    display: none;
-    font-size: 7rem;
-    color: #000000;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 8px;
-    animation: fadeIn 0.8s ease forwards;
-    text-align: center;
-}
-
-/* 4. Overlays */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(135, 206, 235, 0.98);
-    display: none; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 3000;
-    text-align: center;
-    padding: 2rem;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
-.close-btn {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 2.5rem;
-    color: #000;
-    cursor: pointer;
-}
-
-.overlay h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-/* 5. Estilos Nosotros y Contacto */
-.about-text {
-    max-width: 800px;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    margin-bottom: 2rem;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 500px;
-}
-
-.contact-form input, .contact-form textarea {
-    padding: 0.5rem 0;
-    border: none;
-    border-bottom: 1px solid #000;
-    background: transparent;
-    font-family: 'Caudex', serif;
-    font-size: 1.2rem;
-    outline: none;
-}
-
-.contact-form button {
-    padding: 1rem;
-    background: transparent;
-    border: 1px solid #000;
-    cursor: pointer;
-    font-family: 'Caudex', serif;
-    letter-spacing: 2px;
-}
-
-.error-msg {
-    color: #d00;
-    font-size: 1rem;
-    margin-top: 0.5rem;
-}
-
-/* 6. Mapa */
-.map-container {
-    width: 100%;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.map-container input {
-    padding: 0.5rem;
-    border: none;
-    border-bottom: 1px solid #000;
-    background: transparent;
-    font-family: 'Caudex', serif;
-}
-
-.map-container button {
-    padding: 0.5rem;
-    border: 1px solid #000;
-    background: transparent;
-    cursor: pointer;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-    #jardin-text { font-size: 3rem; }
-    .overlay h1 { font-size: 2.5rem; }
-    .about-text { font-size: 1.1rem; }
-}
+\f0\fs24 \cf0 /* Jard\'edn San Joaquin - v12.0 Stylesheet \
+   Enfoque: Lujo Silencioso y Arquitectura Bot\'e1nica\
+*/\
+\
+:root \{\
+    --forest: #0d3f35;      /* Verde Bosque Profundo */\
+    --stone: #f5f5f0;       /* Piedra C\'e1lida / Hueso */\
+    --emerald: #10b981;     /* Esmeralda de Contraste */\
+    --emerald-dark: #064e3b; /* Sombra Esmeralda */\
+    --white-glass: rgba(13, 63, 53, 0.95);\
+\}\
+\
+/* --- Configuraci\'f3n Global --- */\
+* \{\
+    margin: 0;\
+    padding: 0;\
+    box-sizing: border-box;\
+\}\
+\
+body \{\
+    font-family: 'Montserrat', sans-serif;\
+    background-color: var(--stone);\
+    color: #1c1917;\
+    line-height: 1.6;\
+    overflow-x: hidden;\
+\}\
+\
+/* --- Tipograf\'eda --- */\
+.font-serif-elegant \{\
+    font-family: 'Cormorant Garamond', serif;\
+\}\
+\
+h1, h2, h3, h4, .font-serif \{\
+    font-family: 'Cormorant Garamond', serif;\
+\}\
+\
+/* --- Componentes de Navegaci\'f3n --- */\
+.glass-nav \{\
+    background: var(--white-glass);\
+    backdrop-filter: blur(12px);\
+    -webkit-backdrop-filter: blur(12px);\
+    transition: all 0.3s ease;\
+\}\
+\
+.nav-link \{\
+    font-size: 10px;\
+    text-transform: uppercase;\
+    font-weight: 700;\
+    letter-spacing: 0.15em;\
+    color: rgba(255, 255, 255, 0.7);\
+    transition: color 0.3s ease;\
+    background: none;\
+    border: none;\
+    cursor: pointer;\
+\}\
+\
+.nav-link:hover \{\
+    color: var(--emerald);\
+\}\
+\
+.nav-link.active \{\
+    color: white;\
+    border-bottom: 2px solid var(--emerald);\
+    padding-bottom: 4px;\
+\}\
+\
+/* --- Sistema de Secciones (SPA) --- */\
+.tab-content \{\
+    display: none;\
+    opacity: 0;\
+    transform: translateY(10px);\
+    transition: all 0.5s ease;\
+\}\
+\
+.tab-content.active \{\
+    display: block;\
+    opacity: 1;\
+    transform: translateY(0);\
+\}\
+\
+/* --- Tarjetas del Men\'fa Gastron\'f3mico --- */\
+.card-menu \{\
+    background: white;\
+    padding: 2.5rem;\
+    border-radius: 3rem;\
+    border: 2px solid #e5e7eb; /* stone-200 */\
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\
+    display: flex;\
+    flex-direction: column;\
+    align-items: center;\
+    text-align: center;\
+\}\
+\
+.card-menu:hover \{\
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);\
+\}\
+\
+.card-menu.selected \{\
+    border-color: var(--emerald);\
+    background-color: rgba(16, 185, 129, 0.05); /* emerald-50/20 */\
+    transform: scale(1.03);\
+\}\
+\
+/* --- Inputs y Controles --- */\
+input[type="number"] \{\
+    width: 100%;\
+    max-width: 130px;\
+    background-color: #f9fafb; /* stone-50 */\
+    border: 2px solid #e5e7eb;\
+    border-radius: 1rem;\
+    padding: 1rem;\
+    text-align: center;\
+    font-weight: 700;\
+    font-size: 1.125rem;\
+    outline: none;\
+    transition: all 0.3s ease;\
+\}\
+\
+input[type="number"]:focus \{\
+    border-color: var(--emerald);\
+    background-color: white;\
+\}\
+\
+/* Ocultar flechas nativas del input number */\
+input::-webkit-outer-spin-button,\
+input::-webkit-inner-spin-button \{\
+    -webkit-appearance: none;\
+    margin: 0;\
+\}\
+\
+/* --- Panel de Inversi\'f3n / Cotizaci\'f3n --- */\
+.investment-panel \{\
+    background-color: var(--forest);\
+    border-radius: 5rem;\
+    padding: 2.5rem;\
+    color: white;\
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);\
+\}\
+\
+.white-box-consolidated \{\
+    background-color: var(--stone);\
+    border-radius: 4.5rem;\
+    padding: 3rem;\
+    color: var(--forest);\
+    border: 18px solid var(--emerald-dark);\
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);\
+\}\
+\
+/* --- Beneficios y Descuentos --- */\
+.discount-pill \{\
+    padding: 2rem;\
+    background-color: #ecfdf5; /* emerald-100 */\
+    border-radius: 3rem;\
+    border: 2px solid #a7f3d0; /* emerald-200 */\
+    text-align: center;\
+    margin-bottom: 2rem;\
+\}\
+\
+/* --- Animaciones --- */\
+@keyframes zoomIn \{\
+    from \{\
+        opacity: 0;\
+        transform: scale(0.95);\
+    \}\
+    to \{\
+        opacity: 1;\
+        transform: scale(1);\
+    \}\
+\}\
+\
+.animate-zoom \{\
+    animation: zoomIn 0.4s ease-out forwards;\
+\}\
+\
+/* --- Footer Utilitario --- */\
+footer \{\
+    border-top: 1px solid #e5e7eb;\
+    padding: 5rem 1.5rem;\
+    opacity: 0.3;\
+\}\
+\
+/* --- Responsividad --- */\
+@media (max-width: 768px) \{\
+    .investment-panel \{\
+        border-radius: 3rem;\
+        padding: 1.5rem;\
+    \}\
+    \
+    .white-box-consolidated \{\
+        padding: 1.5rem;\
+        border-width: 8px;\
+    \}\
+    \
+    h1 \{\
+        font-size: 3.5rem !important;\
+    \}\
+\}}
