@@ -3,391 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardín San Joaquin | Reserva Boutique v12.0</title>
-    <!-- Framework de Estilos -->
+    <title>Jardín San Jako | Atrapa momentos, crea historias</title>
+    <!-- Framework de utilidades CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tipografía de Lujo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- VARIABLES CORPORATIVAS --- */
         :root {
-            --forest: #0d3f35;
-            --stone: #f5f5f0;
-            --emerald: #10b981;
+            --verde-botella: #06392d;
+            --blanco-suave: #f0fdf4;
+            --dorado: #D4AF37;
+            --lavanda-pastel: #E6E6FA;
+            --azul-cielo: #87CEEB;
+            --azul-visita: #c4d2e7;
+            --verde-claro-btn: #e2f0d9;
+            --rosa-ia: #FFE3F6;
+            --verde-pastel-resumen: #d1e2d3;
         }
-        body { 
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--stone);
-            color: #1c1917;
+
+        /* --- ESTILOS BASE --- */
+        body {
+            background-color: var(--verde-botella);
+            color: var(--blanco-suave); 
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
             scroll-behavior: smooth;
         }
-        .font-serif-elegant { font-family: 'Cormorant Garamond', serif; }
-        
-        /* Sistema de Navegación SPA */
-        .tab-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
-        .tab-content.active { display: block; opacity: 1; transform: translateY(0); }
 
-        .glass-nav { 
-            background: rgba(13, 63, 53, 0.95); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-        }
-        
-        /* Reset de controles nativos para inputs numéricos */
-        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-        }
-        
-        .card-menu {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .logo-svg {
+            width: 80px;
+            height: 80px;
+            stroke: var(--blanco-suave);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        .custom-shadow { box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        /* --- NAVEGACIÓN SPA --- */
+        .nav-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease-in-out;
+            color: var(--blanco-suave);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
 
-        /* Efecto de selección visual */
-        .card-selected {
-            border-color: var(--emerald) !important;
-            background-color: #f0fdf4 !important;
-            transform: scale(1.02);
+        .nav-btn:hover, .nav-btn.active {
+            background-color: #ffffff;
+            color: var(--verde-botella);
+            transform: translateY(-1px);
+        }
+
+        /* --- CONTROL DE VISIBILIDAD DE SECCIONES --- */
+        .section-content {
+            display: none;
+            opacity: 0;
+        }
+
+        .section-content.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- EFECTO CINEMATOGRÁFICO DE TEXTO --- */
+        .cinema-text {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(12px);
+            letter-spacing: 0.5em;
+            animation: cinema-entry 3.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+            text-shadow: 0 0 15px rgba(240, 253, 244, 0.3);
+        }
+
+        @keyframes cinema-entry {
+            0% { opacity: 0; filter: blur(12px); letter-spacing: 0.5em; transform: scale(0.95); }
+            100% { opacity: 1; filter: blur(0); letter-spacing: 0.1em; transform: scale(1); }
+        }
+
+        .cinema-text::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--blanco-suave), transparent);
+            margin: 10px auto 0;
+            animation: line-grow 2s 2s ease-out forwards;
+        }
+
+        @keyframes line-grow { to { width: 80%; } }
+        .cinema-text b i { font-weight: 700; font-style: italic; color: var(--blanco-suave); }
+
+        /* --- TARJETAS E INPUTS --- */
+        .item-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .item-card.disabled {
+            opacity: 0.2;
+            pointer-events: none;
+            filter: grayscale(1);
+        }
+
+        input[type="number"] {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            width: 80px;
+        }
+
+        /* --- RESUMEN Y COTIZACIÓN --- */
+        .summary-box {
+            background: var(--verde-pastel-resumen);
+            color: var(--verde-botella);
+            border: 1px solid rgba(6, 57, 45, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-box h4, .summary-box span { color: var(--verde-botella); }
+
+        .split-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--verde-botella);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            color: var(--verde-botella);
+            font-weight: 600;
+        }
+
+        .split-btn:hover { background: var(--verde-botella); color: white; }
+
+        /* --- SELECTORES DE CATEGORÍA --- */
+        .selector-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 210px;
+        }
+
+        .selector-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            border: none;
+            font-weight: 700;
+        }
+
+        .btn-lavanda { background-color: var(--lavanda-pastel); color: var(--verde-botella); }
+        .btn-azul { background-color: var(--azul-cielo); color: var(--verde-botella); }
+        .btn-verde-claro { background-color: var(--verde-claro-btn); color: var(--verde-botella); }
+        .btn-rosa-ia { background-color: var(--rosa-ia); color: var(--verde-botella); }
+        .btn-no-photo { justify-content: center; }
+
+        .selector-photo-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.1);
+        }
+
+        /* --- GALERÍA --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-cols: repeat(1, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) { .gallery-grid { grid-template-cols: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .gallery-grid { grid-template-cols: repeat(3, 1fr); } }
+
+        .gallery-item {
+            aspect-ratio: 16/9;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- MAPA Y UBICACIÓN --- */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+        }
+
+        .info-visit-box {
+            background-color: var(--azul-visita);
+            color: var(--verde-botella);
+            padding: 2rem;
+            border-radius: 2rem;
+            text-align: center;
+            font-size: 1.15rem; /* +30% aproximadamente */
+            max-width: 90%;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);
+            line-height: 1.5;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-emerald-200">
+<body>
 
-    <!-- Navegación Principal -->
-    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/10 h-20 flex items-center px-6">
-        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('inicio')">
-                <span class="text-emerald-400 text-2xl">🌲</span>
-                <div class="flex flex-col">
-                    <span class="font-serif-elegant italic text-2xl font-bold text-white leading-none">San Joaquin</span>
-                    <span class="text-[8px] uppercase tracking-[0.4em] text-emerald-300 font-bold leading-none mt-1">Reserva de Eventos</span>
-                </div>
-            </div>
-            
-            <div class="hidden lg:flex items-center gap-10">
-                <button onclick="navigateTo('inicio')" class="nav-btn text-[10px] uppercase font-bold tracking-widest text-white/70 hover:text-emerald-300 transition-colors" data-target="inicio">Inicio</button>
-                <button onclick="navigateTo('menu')" class="nav-btn text-[10px] uppercase font-bold tracking-widest text-white hover:text-emerald-300 transition-colors border-b-2 border-emerald-500 pb-1" data-target="menu">Arma tu Menú</button>
-                <button onclick="navigateTo('ubicacion')" class="nav-btn text-[10px] uppercase font-bold tracking-widest text-white/70 hover:text-emerald-300 transition-colors" data-target="ubicacion">Ubicación</button>
-            </div>
-
-            <button onclick="navigateTo('menu')" class="bg-emerald-600 text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-emerald-500 transition-all shadow-lg active:scale-95">
-                Cotizar Ahora
-            </button>
+    <header class="p-6 flex flex-col items-center">
+        <!-- Logo SVG -->
+        <div class="mb-4">
+            <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 85 Q35 70 30 60 Q40 70 50 60 Q45 75 55 85" />
+                <path d="M50 85 Q55 70 50 60 Q60 70 70 60 Q65 75 75 85" />
+                <path d="M70 85 Q75 70 70 60 Q80 70 90 60 Q85 75 95 85" />
+                <g transform="translate(40, 20)">
+                    <circle cx="10" cy="10" r="3" />
+                    <path d="M10 13 L10 25 L5 35 M10 25 L15 35" />
+                    <path d="M10 18 L2 15 M10 18 L18 15" />
+                    <path d="M10 15 Q25 0 15 15 Q25 30 10 18" /> 
+                    <path d="M10 15 Q-5 0 5 15 Q-5 30 10 18" />
+                </g>
+            </svg>
         </div>
-    </nav>
-
-    <main class="pt-24 pb-20">
         
-        <!-- SECCIÓN: INICIO Y NUESTRA HISTORIA -->
-        <section id="inicio" class="tab-content px-6 py-12 max-w-6xl mx-auto">
-            <div class="text-center mb-24 space-y-8">
-                <span class="inline-block bg-emerald-100 text-emerald-900 px-5 py-1.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase">Establecimiento Boutique • Tultepec</span>
-                <h1 class="text-6xl md:text-[5.5rem] font-serif-elegant italic text-[#0d3f35] leading-[0.9] tracking-tighter">La elegancia fluye con la naturaleza</h1>
-                <p class="text-stone-500 text-lg md:text-2xl font-light tracking-[0.1em] max-w-4xl mx-auto leading-relaxed italic">
-                    "Con más de 15 años de trabajo y cuidado en cada detalle de nuestro Jardín hemos creado un espacio verde, tranquilo y hermoso para que disfrutes algunos de los momentos más importantes de tu vida."
-                </p>
-            </div>
+        <h1 class="text-2xl font-light tracking-widest uppercase mb-8">Jardín San Jako</h1>
+
+        <nav class="w-full max-w-6xl">
+            <ul class="flex flex-wrap justify-center gap-2 md:gap-4 text-sm font-medium tracking-wide border-t border-b border-white/10 py-6">
+                <li><button onclick="showSection('inicio')" class="nav-btn active" id="btn-inicio">Inicio</button></li>
+                <li><button onclick="showSection('nosotros')" class="nav-btn" id="btn-nosotros">Nosotros</button></li>
+                <li><button onclick="showSection('menu')" class="nav-btn" id="btn-menu">Arma tu Menú</button></li>
+                <li><button onclick="showSection('mobiliario')" class="nav-btn" id="btn-mobiliario">Selecciona tu Mobiliario</button></li>
+                <li><button onclick="showSection('eventos')" class="nav-btn" id="btn-eventos">Eventos</button></li>
+                <li><button onclick="showSection('visita')" class="nav-btn" id="btn-visita">Agenda tu Visita</button></li>
+                <li><button onclick="showSection('ubicacion')" class="nav-btn" id="btn-ubicacion">Dónde Estamos</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 pb-20">
+        
+        <!-- SECCIÓN INICIO -->
+        <section id="inicio" class="section-content active min-h-[60vh] text-center p-10">
+            <h2 class="cinema-text text-4xl md:text-6xl font-light leading-tight max-w-5xl uppercase">
+                Atrapa <b><i>momentos</i></b>, crea <b><i>historias</i></b>
+            </h2>
+        </section>
+
+        <!-- SECCIÓN NOSOTROS -->
+        <section id="nosotros" class="section-content min-h-[60vh] text-center p-10">
+            <h3 class="text-xl md:text-2xl font-light tracking-wide leading-relaxed max-w-3xl">
+                En conexión con la naturaleza hemos creado a lo largo de estos más de 15 años un espacio íntimo y personal para que cada momento de tu evento sea un recuerdo imborrable para ti y cada uno de tus invitados
+            </h3>
+        </section>
+
+        <!-- SECCIÓN ARMA TU MENÚ -->
+        <section id="menu" class="section-content py-16">
+            <h2 class="text-3xl font-light text-center mb-8 uppercase tracking-widest">Arma tu Menú</h2>
             
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="bg-[#0d3f35] p-12 md:p-16 rounded-[4rem] text-white space-y-10 shadow-2xl relative overflow-hidden">
-                    <div class="relative z-10">
-                        <h2 class="text-[10px] uppercase tracking-[0.5em] text-emerald-400 font-bold mb-4">Propuesta de Valor</h2>
-                        <h3 class="text-4xl font-serif-elegant italic mb-6 leading-tight">Armonía Social y Paisajismo</h3>
-                        <p class="text-emerald-50/70 leading-relaxed text-lg font-light">
-                            Ubicados en el corazón de Tultepec, proporcionamos un ecosistema vivo donde cada detalle visual y auditivo está orquestado para la trascendencia de sus celebraciones más íntimas.
-                        </p>
-                        <div class="pt-12 flex gap-12 border-t border-white/10 mt-10">
-                            <div>
-                                <p class="text-4xl font-serif-elegant italic text-emerald-300">5k</p>
-                                <p class="text-[8px] uppercase tracking-widest opacity-50 mt-1">Metros de Naturaleza</p>
+            <!-- Botones de Chef -->
+            <div class="flex flex-wrap justify-center gap-8 mb-16 w-full max-w-2xl mx-auto">
+                <div class="selector-container">
+                    <button onclick="selectChef('pau')" class="selector-btn btn-lavanda">
+                        <div class="selector-photo-placeholder"></div>
+                        <span>Chef Pau Landa</span>
+                    </button>
+                    <p class="text-[10px] italic mt-2 opacity-80">nuestra chef yucateca especialista en comida mexicana</p>
+                </div>
+                <div class="selector-container">
+                    <button onclick="selectChef('sam')" class="selector-btn btn-azul">
+                        <div class="selector-photo-placeholder"></div>
+                        <span>Chef Sam Noli</span>
+                    </button>
+                    <p class="text-[10px] italic mt-2 opacity-80">nuestro chef tapatío especialista en comida mexicana</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full">
+                <!-- Opciones de Platillos -->
+                <div class="space-y-10">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Sopas</h4>
+                        <div class="space-y-4">
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="pau">
+                                <div><p class="font-medium">Sopa Azteca</p><p class="text-sm opacity-60">$90</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="sopas" data-price="90" value="0" min="10" class="qty-input menu-opt">
                             </div>
-                            <div class="pl-12 border-l border-white/10">
-                                <p class="text-4xl font-serif-elegant italic text-emerald-300">15</p>
-                                <p class="text-[8px] uppercase tracking-widest opacity-50 mt-1">Años de Trayectoria</p>
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="sam">
+                                <div><p class="font-medium">Pozole rojo</p><p class="text-sm opacity-60">$110</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="sopas" data-price="110" value="0" min="10" class="qty-input menu-opt">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Guisados</h4>
+                        <div class="space-y-4">
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="pau">
+                                <div><p class="font-medium">Lomo de cerdo en morita</p><p class="text-sm opacity-60">$140</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="guisados" data-price="140" value="0" min="10" class="qty-input menu-opt">
+                            </div>
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="sam">
+                                <div><p class="font-medium">Tinga de pollo</p><p class="text-sm opacity-60">$110</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="guisados" data-price="110" value="0" min="10" class="qty-input menu-opt">
+                            </div>
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="sam">
+                                <div><p class="font-medium">Mole poblano</p><p class="text-sm opacity-60">$150</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="guisados" data-price="150" value="0" min="10" class="qty-input menu-opt">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Postres</h4>
+                        <div class="space-y-4">
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="pau">
+                                <div><p class="font-medium">Arroz con leche</p><p class="text-sm opacity-60">$90</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="postres" data-price="90" value="0" min="10" class="qty-input menu-opt">
+                            </div>
+                            <div class="item-card p-4 rounded-lg flex justify-between items-center" data-chef="sam">
+                                <div><p class="font-medium">Pastel de fresas</p><p class="text-sm opacity-60">$80</p></div>
+                                <input type="number" onchange="updateMenuTotal()" data-category="postres" data-price="80" value="0" min="10" class="qty-input menu-opt">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="space-y-10 pl-4">
-                    <h4 class="text-3xl font-serif-elegant italic text-stone-800 border-b border-stone-200 pb-6">Atención sin intermediarios</h4>
-                    <p class="text-stone-600 leading-relaxed text-lg font-light">
-                        Nuestra misión es materializar sus sueños en un entorno botánico de alto nivel. Si tiene más dudas o preguntas puede llenar nuestro formulario de contacto para recibir una asesoría privada con nuestros coordinadores de eventos.
-                    </p>
-                    <div class="flex flex-col gap-4">
-                        <button class="flex items-center justify-between w-full bg-white border border-stone-200 p-6 rounded-3xl text-[10px] font-bold uppercase tracking-widest hover:border-emerald-500 hover:text-emerald-700 transition-all group">
-                            <span>📧 Formulario de Contacto Directo</span>
-                            <span class="group-hover:translate-x-2 transition-transform">→</span>
+
+                <!-- Resumen Menú -->
+                <div class="sticky top-10 h-fit">
+                    <div class="summary-box p-8 space-y-6">
+                        <h4 class="text-2xl font-light text-center border-b border-black/10 pb-4 uppercase tracking-widest">Resumen Menú</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between"><span>Sopas:</span><span id="total-sopas">$0.00</span></div>
+                            <div class="flex justify-between"><span>Guisados:</span><span id="total-guisados">$0.00</span></div>
+                            <div class="flex justify-between"><span>Postres:</span><span id="total-postres">$0.00</span></div>
+                        </div>
+                        <div class="border-t border-black/10 pt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold">Total:</span>
+                            <span id="total-general" class="text-2xl font-bold" data-raw="0">$0.00</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <button onclick="calculateSplit(1)" class="split-btn">Yo invito</button>
+                            <button onclick="calculateSplit(2)" class="split-btn">2 amigas</button>
+                            <button onclick="calculateSplit(3)" class="split-btn">3 amigas</button>
+                            <button onclick="calculateSplit(4)" class="split-btn">4 amigas</button>
+                        </div>
+                        <div id="split-result" class="text-center text-xl font-bold pt-2 hidden"></div>
+                        <button onclick="downloadQuote('Menú')" class="w-full bg-emerald-900 text-white font-bold py-3 rounded-lg uppercase text-[10px] tracking-widest mt-6">
+                            Descargar Cotización de Menú
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN: ARMA TU MENÚ (INTERACTIVO) -->
-        <section id="menu" class="tab-content active px-6 py-12 max-w-7xl mx-auto">
-            <div class="text-center mb-20 space-y-4">
-                <h2 class="text-5xl md:text-7xl font-serif-elegant italic text-[#0d3f35] tracking-tight">Menú de Gala</h2>
-                <p class="text-[10px] uppercase tracking-[0.7em] text-stone-400 font-bold">Temporada Tultepec 2026</p>
-                <div class="h-px bg-emerald-900/10 w-40 mx-auto mt-8"></div>
-            </div>
-
-            <!-- Grid de Menú Tipográfico -->
-            <div class="grid lg:grid-cols-3 gap-12" id="menu-grid">
-                <!-- Generado por JS -->
-            </div>
-
-            <!-- Panel de Inversión Consolidado -->
-            <div class="mt-32 bg-[#0d3f35] rounded-[5rem] p-10 md:p-20 shadow-2xl text-white flex flex-col lg:flex-row gap-20">
-                <div class="flex-1 space-y-12">
-                    <div class="flex items-center gap-6 text-emerald-400 border-b border-white/10 pb-8">
-                        <span class="text-4xl">🍽️</span>
-                        <h4 class="text-sm font-black uppercase tracking-[0.4em]">Consolidado de Reserva</h4>
+        <!-- SECCIÓN SELECCIONA TU MOBILIARIO -->
+        <section id="mobiliario" class="section-content py-16">
+            <h2 class="text-3xl font-light text-center mb-12 uppercase tracking-widest">Selecciona tu Mobiliario</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full">
+                <div class="space-y-10">
+                    <div class="item-card p-4 rounded-lg flex justify-between items-center">
+                        <div><p class="font-medium text-white">1 Mesa con 10 Sillas</p><p class="text-sm opacity-60">$800 (mín 5)</p></div>
+                        <input type="number" onchange="updateFurnitureTotal()" data-label="1 Mesa con 10 Sillas" data-price="800" value="0" min="5" class="furniture-input">
                     </div>
-                    <div class="space-y-10">
-                        <p class="text-xs uppercase font-bold tracking-[0.4em] text-emerald-500/50 italic">Dividir presupuesto entre amigos</p>
-                        <div class="flex gap-4 flex-wrap" id="split-controls">
-                            <!-- Botones generados por JS -->
-                        </div>
+                    <div class="item-card p-4 rounded-lg flex justify-between items-center">
+                        <div><p class="font-medium text-white">Mesas extras</p><p class="text-sm opacity-60">$150 (máx 5)</p></div>
+                        <input type="number" onchange="updateFurnitureTotal()" data-label="Mesas extras" data-price="150" value="0" min="0" max="5" class="furniture-input">
                     </div>
-                    <div id="status-box" class="p-10 rounded-[3rem] bg-black/20 border border-white/5 text-sm italic text-emerald-100/60 leading-relaxed font-light">
-                        Personalice su menú seleccionando al menos 10 platos de cualquier categoría para activar la proyección financiera automática.
+                    <div class="item-card p-4 rounded-lg flex justify-between items-center">
+                        <div><p class="font-medium text-white">Sillas extras</p><p class="text-sm opacity-60">$40 (máx 20)</p></div>
+                        <input type="number" onchange="updateFurnitureTotal()" data-label="Sillas extras" data-price="40" value="0" min="0" max="20" class="furniture-input">
+                    </div>
+                    <div class="item-card p-4 rounded-lg flex justify-between items-center">
+                        <div><p class="font-medium text-white">Pista de baile led</p><p class="text-sm opacity-60">$1,500 (máx 1)</p></div>
+                        <input type="number" onchange="updateFurnitureTotal()" data-label="Pista de baile led" data-price="1500" value="0" min="0" max="1" class="furniture-input">
+                    </div>
+                    <div class="item-card p-4 rounded-lg flex justify-between items-center">
+                        <div><p class="font-medium text-white">Pantallas de TV</p><p class="text-sm opacity-60">$500 (máx 3)</p></div>
+                        <input type="number" onchange="updateFurnitureTotal()" data-label="Pantallas de TV" data-price="500" value="0" min="0" max="3" class="furniture-input">
+                    </div>
+                    <div class="item-card p-4 rounded-lg flex justify-between items-center">
+                        <div><p class="font-medium text-white">Bocinas</p><p class="text-sm opacity-60">$400 (máx 5)</p></div>
+                        <input type="number" onchange="updateFurnitureTotal()" data-label="Bocinas" data-price="400" value="0" min="0" max="5" class="furniture-input">
                     </div>
                 </div>
-
-                <div class="w-full lg:w-[500px] bg-[#f5f5f0] rounded-[4.5rem] p-12 text-[#0d3f35] border-[18px] border-[#0a2e27] shadow-inner relative overflow-hidden">
-                    <div class="space-y-8 relative z-10">
-                        <div class="flex justify-between text-[11px] font-black uppercase opacity-40 tracking-widest px-2">
-                            <span>Subtotal Bruto</span>
-                            <span id="display-subtotal">$0</span>
+                <div class="sticky top-10 h-fit">
+                    <div class="summary-box p-8 space-y-6">
+                        <h4 class="text-2xl font-light text-center border-b border-black/10 pb-4 uppercase tracking-widest">Resumen Mobiliario</h4>
+                        <div id="furniture-details" class="space-y-3 text-sm min-h-[60px]">
+                            <p class="opacity-40 text-center italic">Seleccione artículos</p>
                         </div>
-                        
-                        <div id="discount-pill" class="hidden p-8 bg-emerald-100 rounded-[3rem] border-2 border-emerald-200 text-center animate-in zoom-in shadow-sm">
-                            <span class="font-serif-elegant italic font-bold text-4xl block mb-1 text-emerald-900" id="display-discount-name">Pirulí</span>
-                            <p class="text-[10px] uppercase font-black text-emerald-700 tracking-widest" id="display-discount-amount">-$0 de ahorro aplicado</p>
+                        <div class="border-t border-black/10 pt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold">Total:</span>
+                            <span id="total-furniture" class="text-2xl font-bold" data-raw="0">$0.00</span>
                         </div>
-
-                        <div class="h-px bg-stone-200 mx-2" />
-                        
-                        <div class="flex flex-col text-center">
-                            <span class="text-[10px] font-black uppercase opacity-40 mb-3 tracking-[0.3em]">Total Neto Estimado</span>
-                            <span class="text-8xl font-serif-elegant italic font-bold tracking-tighter leading-none" id="display-total">$0</span>
-                            <span class="text-[10px] font-bold opacity-30 mt-6 uppercase tracking-widest">Pesos Mexicanos (MXN)</span>
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <button onclick="calculateFurnitureSplit(1)" class="split-btn">Yo invito</button>
+                            <button onclick="calculateFurnitureSplit(2)" class="split-btn">2 amigas</button>
+                            <button onclick="calculateFurnitureSplit(3)" class="split-btn">3 amigas</button>
+                            <button onclick="calculateFurnitureSplit(4)" class="split-btn">4 amigas</button>
                         </div>
-
-                        <div id="split-area" class="hidden pt-10 border-t-2 border-dashed border-stone-300 text-center">
-                            <span class="text-[11px] font-black uppercase text-emerald-700 block mb-2 tracking-widest">Aportación por Persona</span>
-                            <span class="text-5xl font-serif-elegant italic font-bold" id="display-split">$0</span>
-                        </div>
-
-                        <button class="w-full mt-12 py-6 bg-[#0d3f35] text-white rounded-3xl font-black uppercase text-[10px] tracking-[0.4em] hover:bg-black transition-all shadow-2xl active:scale-95 flex items-center justify-center gap-3">
-                            Generar Cotización PDF
+                        <div id="split-furniture-result" class="text-center text-xl font-bold pt-2 hidden"></div>
+                        <button onclick="downloadQuote('Mobiliario')" class="w-full bg-emerald-900 text-white font-bold py-3 rounded-lg uppercase text-[10px] tracking-widest mt-6">
+                            Descargar Cotización de Mobiliario
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN: UBICACIÓN -->
-        <section id="ubicacion" class="tab-content px-6 py-20 max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl font-serif-elegant italic text-[#0d3f35] mb-12">Ubicación Privada</h2>
-            <div class="bg-white p-16 rounded-[5rem] border border-stone-200 shadow-2xl space-y-12">
-                <div class="flex flex-col items-center gap-6">
-                    <div class="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center text-4xl shadow-inner">📍</div>
-                    <p class="text-3xl font-serif-elegant italic text-stone-800 leading-tight">Av. San Joaquin #120, Tultepec,<br>Estado de México</p>
+        <!-- SECCIÓN EVENTOS -->
+        <section id="eventos" class="section-content py-16 w-full max-w-6xl">
+            <h2 class="text-3xl font-light text-center mb-8 uppercase tracking-widest">Eventos</h2>
+            
+            <div class="flex flex-wrap justify-center gap-8 mb-12 w-full">
+                <div class="selector-container">
+                    <button onclick="selectGallery('jardin')" class="selector-btn btn-verde-claro btn-no-photo">
+                        <span>Nuestro Jardín</span>
+                    </button>
                 </div>
-                <div class="grid sm:grid-cols-2 gap-12 pt-16 border-t border-stone-100">
-                    <div class="space-y-4">
-                        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-stone-300">Canal Digital</p>
-                        <p class="text-2xl font-serif-elegant italic text-emerald-800">@jardinsanjoaquin</p>
-                    </div>
-                    <div class="space-y-4 border-l border-stone-100 sm:pl-12">
-                        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-stone-300">Teléfono</p>
-                        <p class="text-2xl font-serif-elegant italic text-emerald-800">+52 55 1234 5678</p>
+                <div class="selector-container">
+                    <button onclick="selectGallery('ia')" class="selector-btn btn-rosa-ia btn-no-photo">
+                        <span>Galería IA</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="gallery-display" class="gallery-grid">
+                <div class="gallery-item"><span class="text-[10px] uppercase opacity-20 tracking-widest">Multimedia 1</span></div>
+                <div class="gallery-item"><span class="text-[10px] uppercase opacity-20 tracking-widest">Multimedia 2</span></div>
+                <div class="gallery-item"><span class="text-[10px] uppercase opacity-20 tracking-widest">Multimedia 3</span></div>
+                <div class="gallery-item"><span class="text-[10px] uppercase opacity-20 tracking-widest">Multimedia 4</span></div>
+                <div class="gallery-item"><span class="text-[10px] uppercase opacity-20 tracking-widest">Multimedia 5</span></div>
+                <div class="gallery-item"><span class="text-[10px] uppercase opacity-20 tracking-widest">Multimedia 6</span></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN VISITA -->
+        <section id="visita" class="section-content py-16 text-center">
+            <h2 class="text-3xl font-light uppercase tracking-widest">Agenda tu Visita</h2>
+            <p class="mt-8 opacity-50">Formulario interactivo próximamente.</p>
+        </section>
+
+        <!-- SECCIÓN UBICACIÓN -->
+        <section id="ubicacion" class="section-content py-16 w-full max-w-6xl">
+            <h2 class="text-3xl font-light text-center mb-12 uppercase tracking-widest">Dónde Estamos</h2>
+            
+            <!-- Mapa -->
+            <div class="map-container w-full mb-12" onclick="window.open('https://www.google.com/maps/search/Av.+Geometría+Espacial+Nº+6A+Coyotepec+Estado+de+México', '_blank')">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15024.123456789!2d-99.2!3d19.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQyJzAwLjAiTiA5OcKwMTInMDAnMCJX!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full">
+                <div class="space-y-4 text-left">
+                    <h4 class="font-bold uppercase tracking-widest mb-4">Información de Contacto</h4>
+                    <p class="opacity-80">Av. Geometría Espacial Nº 6A entre calles 4 y 6. Col. Poliedro Sur. C.P. 55923. Coyotepec, Estado de México.</p>
+                    <p class="opacity-80">Fijo: 55.1234.5678 | WhatsApp: 55.0000.0000</p>
+                    <p class="opacity-80">Email: jardinsanjako@tutanota.com</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="info-visit-box w-full">
+                        <p class="italic">Para conocer nuestras instalaciones agenda una visita o encuéntranos todos los sábados de 10 a 13 h para hacer un recorrido por nuestras instalaciones.</p>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-32 py-20 border-t border-stone-200 px-6 opacity-30">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3">
-                <span class="text-emerald-900 text-2xl">🌲</span>
-                <span class="font-serif-elegant italic text-2xl font-bold text-[#0d3f35]">San Joaquin</span>
-            </div>
-            <p class="text-[9px] font-bold uppercase tracking-[0.6em] text-center italic">Stable Build v12.0 • Tultepec • 2026</p>
-            <div class="flex gap-10 text-xl grayscale items-center">
-                <span>📸</span><span>📧</span><span>💬</span>
-            </div>
-        </div>
-    </footer>
-
+    <!-- LÓGICA DE APLICACIÓN -->
     <script>
-        // --- BASE DE DATOS DEL MENÚ v12.0 ---
-        const menuData = {
-            sopas: [
-                { id: 's1', name: "Sopa Azteca", price: 95 },
-                { id: 's2', name: "Sopa de Lima", price: 110 },
-                { id: 's3', name: "Crema Poblana", price: 125 }
-            ],
-            guisados: [
-                { id: 'g1', name: "Lomo en Adobo", price: 280 },
-                { id: 'g2', name: "Pechuga Cordon Bleu", price: 260 },
-                { id: 'g3', name: "Filete Pimienta", price: 380 }
-            ],
-            postres: [
-                { id: 'p1', name: "Pastel Chocolate", price: 105 },
-                { id: 'p2', name: "Flan Napolitano", price: 85 },
-                { id: 'p3', name: "Arroz Místico", price: 75 }
-            ]
-        };
-
-        // --- ESTADO LOCAL ---
-        let selections = {};
-        let splitValue = 1;
-
-        // --- SISTEMA DE NAVEGACIÓN ---
-        function navigateTo(id) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        // Navegación SPA
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
-            // Actualizar botones de navegación
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                if(btn.getAttribute('data-target') === id) {
-                    btn.classList.add('text-emerald-300', 'border-b-2', 'border-emerald-500', 'pb-1');
-                    btn.classList.remove('text-white/70');
+            const btn = document.getElementById('btn-' + id);
+            if (btn) btn.classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // Selección de Chef
+        function selectChef(chefId) {
+            document.querySelectorAll('.qty-input.menu-opt').forEach(input => { input.value = 0; });
+            updateMenuTotal();
+            document.querySelectorAll('#menu .item-card').forEach(item => {
+                if (item.getAttribute('data-chef') === chefId) {
+                    item.classList.remove('disabled');
                 } else {
-                    btn.classList.remove('text-emerald-300', 'border-b-2', 'border-emerald-500', 'pb-1');
-                    btn.classList.add('text-white/70');
+                    item.classList.add('disabled');
                 }
             });
-
-            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // --- RENDERIZADO DEL MENÚ ---
-        function renderMenu() {
-            const grid = document.getElementById('menu-grid');
-            let html = '';
-            
-            Object.entries(menuData).forEach(([cat, items]) => {
-                html += `
-                    <div class="space-y-12">
-                        <h3 class="text-2xl font-serif-elegant italic border-b border-emerald-900/10 pb-4 capitalize text-[#0d3f35] text-center font-bold tracking-widest">${cat}</h3>
-                        <div class="space-y-8">
-                            ${items.map(item => `
-                                <div id="card-${item.id}" class="card-menu relative bg-white p-10 rounded-[3.5rem] border-2 border-stone-100 flex flex-col items-center text-center shadow-sm hover:shadow-xl">
-                                    <span class="text-3xl font-serif-elegant italic leading-tight block mb-2 text-stone-800">${item.name}</span>
-                                    <div class="flex flex-col mb-8">
-                                        <span class="text-xl font-serif-elegant italic text-emerald-700">$${item.price}</span>
-                                        <span class="text-[7px] uppercase font-black text-stone-300 tracking-[0.2em] mt-1">Precio por Plato</span>
-                                    </div>
-                                    <div class="w-full max-w-[130px] relative">
-                                        <input type="number" placeholder="Cant." min="0" 
-                                               onchange="updateSelection('${cat}', '${item.id}', this.value)"
-                                               class="w-full bg-stone-50 border-2 border-stone-100 rounded-2xl py-4 text-center font-bold outline-none focus:border-emerald-500 transition-all text-lg">
-                                        <p class="text-[7px] uppercase font-black text-stone-400 mt-3 tracking-widest opacity-60 italic">Mínimo 10 platos</p>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
+        // Cálculos de Menú
+        function updateMenuTotal() {
+            let totals = { sopas: 0, guisados: 0, postres: 0 };
+            document.querySelectorAll('.qty-input.menu-opt').forEach(input => {
+                let val = parseInt(input.value) || 0;
+                if (input.closest('.item-card').classList.contains('disabled')) { input.value = 0; val = 0; }
+                if (val > 0 && val < 10) { input.value = 10; val = 10; }
+                const cat = input.dataset.category;
+                const price = parseFloat(input.dataset.price);
+                totals[cat] += val * price;
             });
-            grid.innerHTML = html;
+            document.getElementById('total-sopas').innerText = `$${totals.sopas.toLocaleString()}`;
+            document.getElementById('total-guisados').innerText = `$${totals.guisados.toLocaleString()}`;
+            document.getElementById('total-postres').innerText = `$${totals.postres.toLocaleString()}`;
+            const total = totals.sopas + totals.guisados + totals.postres;
+            const tg = document.getElementById('total-general');
+            tg.innerText = `$${total.toLocaleString()}`;
+            tg.dataset.raw = total;
+            document.getElementById('split-result').classList.add('hidden');
+        }
 
-            // Renderizar controles de división
-            const splitControls = document.getElementById('split-controls');
-            [1, 2, 3, 4, 5].forEach(n => {
-                const btn = document.createElement('button');
-                btn.className = `px-10 py-4 rounded-full border-2 text-[9px] font-black uppercase tracking-widest transition-all ${n === 1 ? 'bg-emerald-500 border-transparent text-[#0d3f35]' : 'border-white/20 text-white hover:border-emerald-500'}`;
-                btn.id = `btn-split-${n}`;
-                btn.innerText = n === 1 ? 'Sólo Yo' : `${n} Amigos`;
-                btn.onclick = () => setSplit(n);
-                splitControls.appendChild(btn);
+        function calculateSplit(d) {
+            const total = parseFloat(document.getElementById('total-general').dataset.raw);
+            if (!total) return;
+            const res = document.getElementById('split-result');
+            res.innerText = d === 1 ? `Total: $${total.toLocaleString()}` : `Por persona: $${(total/d).toLocaleString()}`;
+            res.classList.remove('hidden');
+        }
+
+        // Cálculos de Mobiliario
+        function updateFurnitureTotal() {
+            let total = 0;
+            const detailContainer = document.getElementById('furniture-details');
+            detailContainer.innerHTML = '';
+            document.querySelectorAll('.furniture-input').forEach(input => {
+                let val = parseInt(input.value) || 0;
+                const min = parseInt(input.min) || 0;
+                const max = input.max !== "" ? parseInt(input.max) : Infinity;
+                if (val > 0 && val < min) { input.value = min; val = min; }
+                if (val > max) { input.value = max; val = max; }
+                if (val > 0) {
+                    const price = parseFloat(input.dataset.price);
+                    const subtotal = val * price;
+                    total += subtotal;
+                    const row = document.createElement('div');
+                    row.className = 'flex justify-between';
+                    row.innerHTML = `<span>${val}x ${input.dataset.label}</span><span>$${subtotal.toLocaleString()}</span>`;
+                    detailContainer.appendChild(row);
+                }
             });
+            if (total === 0) detailContainer.innerHTML = '<p class="opacity-40 text-center italic">Seleccione artículos</p>';
+            const tf = document.getElementById('total-furniture');
+            tf.innerText = `$${total.toLocaleString()}`;
+            tf.dataset.raw = total;
+            document.getElementById('split-furniture-result').classList.add('hidden');
         }
 
-        // --- LÓGICA DE CÁLCULO ---
-        function updateSelection(cat, id, val) {
-            const qty = parseInt(val) || 0;
-            const card = document.getElementById(`card-${id}`);
-            
-            if (qty > 0) {
-                const validQty = Math.max(10, qty);
-                selections[id] = { qty: validQty, price: menuData[cat].find(i => i.id === id).price };
-                card.classList.add('card-selected');
-                card.classList.remove('border-stone-100');
-            } else {
-                delete selections[id];
-                card.classList.remove('card-selected');
-                card.classList.add('border-stone-100');
-            }
-            calculate();
+        function calculateFurnitureSplit(d) {
+            const total = parseFloat(document.getElementById('total-furniture').dataset.raw);
+            if (!total) return;
+            const res = document.getElementById('split-furniture-result');
+            res.innerText = d === 1 ? `Total: $${total.toLocaleString()}` : `Por persona: $${(total/d).toLocaleString()}`;
+            res.classList.remove('hidden');
         }
 
-        function setSplit(n) {
-            splitValue = n;
-            document.querySelectorAll('#split-controls button').forEach(b => {
-                b.classList.remove('bg-emerald-500', 'border-transparent', 'text-[#0d3f35]');
-                b.classList.add('border-white/20', 'text-white');
-            });
-            const active = document.getElementById(`btn-split-${n}`);
-            active.classList.remove('border-white/20', 'text-white');
-            active.classList.add('bg-emerald-500', 'border-transparent', 'text-[#0d3f35]');
-            calculate();
+        // Exportar Cotización
+        function downloadQuote(type) {
+            let msg = `Jardín San Jako - Cotización ${type}\n`;
+            if(type === 'Menú') {
+                msg += `Sopas: ${document.getElementById('total-sopas').innerText}\nGuisados: ${document.getElementById('total-guisados').innerText}\nPostres: ${document.getElementById('total-postres').innerText}\nTOTAL: ${document.getElementById('total-general').innerText}`;
+            } else {
+                let details = "";
+                document.getElementById('furniture-details').querySelectorAll('div').forEach(div => { details += div.innerText.replace('\n', ': ') + "\n"; });
+                msg += `\n${details}\nTOTAL: ${document.getElementById('total-furniture').innerText}`;
+            }
+            const textarea = document.createElement("textarea");
+            textarea.value = msg;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            const b = event.target;
+            const old = b.innerText;
+            b.innerText = "¡Copiado!";
+            setTimeout(() => b.innerText = old, 2000);
         }
 
-        function calculate() {
-            let subtotal = 0;
-            Object.values(selections).forEach(s => subtotal += (s.qty * s.price));
-
-            let discount = 0;
-            let dName = "";
-            if (subtotal >= 5000) { discount = 0.15; dName = "Beneficio Fresno"; }
-            else if (subtotal >= 4000) { discount = 0.10; dName = "Beneficio Jacaranda"; }
-            else if (subtotal >= 3500) { discount = 0.07; dName = "Beneficio Pirulí"; }
-
-            const discAmt = subtotal * discount;
-            const total = subtotal - discAmt;
-
-            // Actualización de UI
-            document.getElementById('display-subtotal').innerText = `$${subtotal.toLocaleString()}`;
-            document.getElementById('display-total').innerText = `$${total.toLocaleString()}`;
-
-            const pill = document.getElementById('discount-pill');
-            if (discAmt > 0) {
-                pill.classList.remove('hidden');
-                document.getElementById('display-discount-name').innerText = dName;
-                document.getElementById('display-discount-amount').innerText = `-$${discAmt.toLocaleString()} (${discount*100}%) de ahorro aplicado`;
-            } else {
-                pill.classList.add('hidden');
-            }
-
-            const splitBox = document.getElementById('split-area');
-            if (splitValue > 1 && total > 0) {
-                splitBox.classList.remove('hidden');
-                document.getElementById('display-split').innerText = `$${Math.round(total/splitValue).toLocaleString()}`;
-            } else {
-                splitBox.classList.add('hidden');
-            }
-
-            const status = document.getElementById('status-box');
-            if (total > 0) {
-                status.innerText = "Presupuesto dinámico proyectado. Válido por 15 días naturales.";
-                status.classList.add('text-emerald-300');
-            } else {
-                status.innerText = "Personalice su menú seleccionando al menos 10 platos por categoría para activar la proyección financiera automática.";
-                status.classList.remove('text-emerald-300');
-            }
+        // Galería
+        function selectGallery(type) {
+            const display = document.getElementById('gallery-display');
+            display.style.opacity = '0';
+            setTimeout(() => {
+                display.style.opacity = '1';
+                display.querySelectorAll('.gallery-item span').forEach((span, i) => {
+                    span.innerText = `${type === 'ia' ? 'IA Concept' : 'Jardín Real'} - Multimedia ${i + 1}`;
+                });
+            }, 300);
         }
-
-        // Inicio de aplicación
-        window.onload = renderMenu;
     </script>
 </body>
 </html>
