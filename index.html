@@ -42,29 +42,41 @@
             position: sticky; top: 0;
             background-color: var(--apple-header);
             backdrop-filter: saturate(180%) blur(20px);
-            padding: 1.2rem 2rem; z-index: 1000;
+            padding: 1rem; z-index: 1000;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .header-container {
             max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center; width: 100%;
+            display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center; width: 100%;
+        }
+
+        @media(min-width: 768px){
+            .header-container { flex-direction: row; padding: 0.5rem 2rem; }
         }
 
         .brand-name {
-            font-weight: 300; font-size: 1.75rem; letter-spacing: 0.15em;
+            font-weight: 300; font-size: 1.5rem; letter-spacing: 0.15em;
             color: var(--apple-text); text-transform: uppercase; cursor: pointer;
+            margin-top: 10px;
         }
+        
+        @media(min-width: 768px){ .brand-name { margin-top: 0; font-size: 1.75rem; } }
 
         .nav-btn {
             padding: 0.5rem 1rem; transition: all 0.2s ease;
             color: var(--apple-text-secondary); cursor: pointer;
             font-weight: 400; font-size: 1.02rem;
             background-color: transparent; border-radius: 8px;
+            white-space: nowrap;
         }
 
         .nav-btn:hover { color: var(--apple-text); }
-        .nav-btn.active { color: var(--apple-text); font-weight: 700; }
+        .nav-btn.active { color: var(--apple-text); font-weight: 700; background: rgba(0,0,0,0.05); }
+
+        /* Hide scrollbar for mobile nav */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         .section-content { display: none; opacity: 0; width: 100%; }
         .section-content.active { 
@@ -74,33 +86,34 @@
 
         @keyframes appleFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .lightbox-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px; max-width: 1200px; margin: 40px auto; width: 100%;
-        }
-        
-        #nosotros .lightbox-grid { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); max-width: 1400px; }
-
         .lightbox-item {
             position: relative; background: white; border-radius: 18px;
             overflow: hidden; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             transition: all 0.5s; border: 1px solid rgba(0,0,0,0.05);
         }
-        .lightbox-item:hover { transform: scale(1.02); }
-        .lightbox-item img { width: 100%; height: 400px; object-fit: cover; }
-        #nosotros .lightbox-item img { height: 600px; object-fit: cover; }
+        .lightbox-item:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .lightbox-item img { width: 100%; height: 300px; object-fit: cover; }
+        
+        @media(min-width: 768px) {
+            .lightbox-item img { height: 400px; }
+            #nosotros .lightbox-item img { height: 600px; }
+        }
 
         .qty-input { 
             background-color: var(--bg-qty); color: var(--apple-text); 
             border: 1px solid rgba(0,0,0,0.05); border-radius: 10px; 
-            width: 75px; text-align: center; font-weight: 900; padding: 8px;
+            width: 70px; text-align: center; font-weight: 900; padding: 8px;
+            outline: none; transition: 0.2s;
         }
+        .qty-input:focus { border-color: var(--dorado); box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2); }
 
         .btn-logic { padding: 12px 25px; border-radius: 99px; font-weight: 700; transition: all 0.3s ease; color: white; margin: 5px; }
+        .btn-logic:hover { opacity: 0.9; transform: scale(1.02); }
 
         .btn-friend-mobiliario {
             background-color: white; color: black; border: 1px solid rgba(0,0,0,0.1);
-            padding: 12px 20px; border-radius: 99px; font-weight: 700; transition: all 0.3s ease;
+            padding: 10px 16px; border-radius: 99px; font-weight: 700; transition: all 0.3s ease;
+            font-size: 0.85rem;
         }
         .btn-friend-mobiliario:hover { background-color: var(--dorado); color: white; transform: scale(1.05); }
         .btn-friend-mobiliario:active { background-color: var(--green-active) !important; color: white !important; }
@@ -109,26 +122,29 @@
             background-color: var(--quote-green); color: white; padding: 18px 40px;
             border-radius: 99px; font-weight: 900; text-transform: uppercase;
             letter-spacing: 0.1em; transition: all 0.3s ease; cursor: pointer;
+            width: 100%; md:width: auto;
         }
+        .btn-final-quote:hover { background-color: var(--green-active); }
 
-        .menu-grid-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; margin-bottom: 30px; }
         .chef-disabled { opacity: 0.2; pointer-events: none; filter: grayscale(1); }
-        .food-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .food-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;}
+        .food-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .food-card img { width: 100%; height: 220px; object-fit: cover; }
+        .food-info { padding: 1.2rem; }
 
         #expanded-viewer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.98); z-index: 5000; }
-        .viewer-content-box { width: 90%; height: 90%; display: grid; grid-template-columns: 1fr 1.2fr; background: white; border-radius: 2rem; box-shadow: 0 40px 100px rgba(0,0,0,0.1); overflow: hidden; }
-        .viewer-img-box img { width: 100%; height: 100%; object-fit: cover !important; }
-        .btn-close-viewer { background-color: var(--azul-boton); color: var(--apple-text); padding: 12px 45px; border-radius: 30px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
-
+        
         #quote-id-display {
             color: var(--verde-profundo); background: #ffffff; padding: 20px;
             border-radius: 12px; font-family: 'Courier New', monospace; font-size: 1.15rem;
             letter-spacing: 1px; font-weight: 700; text-align: center; border: 1px solid rgba(0,0,0,0.08);
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            word-break: break-all;
         }
-        .btn-generate-folio { background-color: var(--btn-orange); color: white; padding: 18px 40px; border-radius: 99px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
-        .validation-error { color: #ff3b30; font-size: 0.75rem; font-weight: 700; margin-top: -10px; margin-bottom: 15px; display: none; }
+        .btn-generate-folio { background-color: var(--btn-orange); color: white; padding: 18px 40px; border-radius: 99px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s;}
+        .btn-generate-folio:hover { background-color: #e5901c; }
+        .validation-error { color: #ff3b30; font-size: 0.8rem; font-weight: 700; margin-top: -10px; margin-bottom: 15px; display: none; }
+        
         .invoice-table { width: 100%; border-collapse: collapse; }
         .invoice-table th { text-align: left; font-size: 0.7rem; color: #86868b; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid #eee; }
         .invoice-table td { padding: 10px 0; font-size: 0.9rem; border-bottom: 1px solid #f9f9f9; }
@@ -136,17 +152,17 @@
         footer { 
             width: 100%; min-height: 256px; margin-top: auto; 
             background: linear-gradient(to bottom, var(--apple-bg), transparent 40%), url('img/foot_jardin01.webp') no-repeat bottom center; 
+            background-color: #2c3e2e; /* Fallback color */
             background-size: cover; 
         }
-        ::-webkit-scrollbar { width: 0px; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-container">
-            <nav>
-                <ul class="flex gap-2">
+        <div class="header-container flex-col-reverse md:flex-row">
+            <nav class="w-full md:w-auto mt-4 md:mt-0">
+                <ul class="flex gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
                     <li><button onclick="showSection('inicio')" class="nav-btn active" id="btn-inicio">Inicio</button></li>
                     <li><button onclick="showSection('nosotros')" class="nav-btn" id="btn-nosotros">Nosotros</button></li>
                     <li><button onclick="showSection('menu')" class="nav-btn" id="btn-menu">Menú</button></li>
@@ -156,210 +172,232 @@
                     <li><button onclick="showSection('ubicacion')" class="nav-btn" id="btn-ubicacion">Ubicación</button></li>
                 </ul>
             </nav>
-            <div class="brand-name" onclick="showSection('inicio')">Jardín San Jako</div>
+            <div class="brand-name w-full md:w-auto text-center md:text-right" onclick="showSection('inicio')">Jardín San Jako</div>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-6 pb-20">
+    <main class="flex-grow container mx-auto px-4 md:px-6 pb-20 overflow-x-hidden">
         
         <!-- SECCIÓN INICIO -->
-        <section id="inicio" class="section-content active text-center pt-32">
-            <h1 class="text-8xl font-black tracking-tighter mb-4">Inolvidable.</h1>
-            <h2 class="text-4xl font-light text-gray-400 mb-12">Atrapa momentos, crea historias.</h2>
-            <div class="hero-container relative max-w-[1100px] mx-auto rounded-[2rem] overflow-hidden shadow-2xl">
-                <img src="img/port_mobiliario01.webp" alt="Mobiliario Portada" class="w-full h-[600px] object-cover">
-                <div class="absolute inset-0 bg-black/30 flex flex-col justify-center items-center p-12 text-center">
-                    <p class="text-white text-2xl font-light max-w-3xl leading-relaxed">En Jardín San Jako hemos preparado el espacio natural más bonito, agradable y amplio de toda la zona. Con más de 15 años de trabajo y cuidando cada detalle.</p>
-                    <button class="absolute bottom-12 right-12 bg-white text-black px-10 py-3 rounded-full font-bold uppercase text-sm hover:bg-[#D4AF37] hover:text-white transition-all shadow-lg" onclick="showSection('nosotros')">Bienvenidos</button>
+        <section id="inicio" class="section-content active text-center pt-16 md:pt-32">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-4 text-[#1d1d1f]">Inolvidable.</h1>
+            <h2 class="text-2xl md:text-4xl font-light text-gray-400 mb-12">Atrapa momentos, crea historias.</h2>
+            <div class="hero-container relative max-w-[1100px] w-full mx-auto rounded-3xl md:rounded-[2rem] overflow-hidden shadow-2xl">
+                <img src="img/port_mobiliario01.webp" alt="Mobiliario Portada" class="w-full h-[400px] md:h-[600px] object-cover bg-gray-200">
+                <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center p-6 md:p-12 text-center">
+                    <p class="text-white text-lg md:text-2xl font-light max-w-3xl leading-relaxed">En Jardín San Jako hemos preparado el espacio natural más bonito, agradable y amplio de toda la zona. Con más de 15 años de trabajo y cuidando cada detalle.</p>
+                    <button class="mt-8 md:absolute md:bottom-12 md:right-12 bg-white text-black px-8 py-3 rounded-full font-bold uppercase text-sm hover:bg-[#D4AF37] hover:text-white transition-all shadow-lg" onclick="showSection('nosotros')">Bienvenidos</button>
                 </div>
             </div>
         </section>
 
         <!-- SECCIÓN NOSOTROS -->
-        <section id="nosotros" class="section-content py-24">
-            <h1 class="text-6xl font-black text-center mb-16">Nuestro Equipo</h1>
-            <div class="lightbox-grid">
+        <section id="nosotros" class="section-content py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-black text-center mb-10 md:mb-16">Nuestro Equipo</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1400px] mx-auto w-full">
                 <!-- Gabor Ferrer -->
                 <div class="lightbox-item" onclick="openViewer('Gabor Ferrer', 'img/col-admon.webp', 'Con cada visita y con cada invitado es donde yo me siento afortunado', 'Gerente General')">
-                    <img src="img/col-admon.webp" alt="Gabor Ferrer">
-                    <div class="lightbox-caption p-6">Gabor Ferrer <span class="text-gray-400 font-normal">Gerente</span></div>
+                    <img src="img/col-admon.webp" alt="Gabor Ferrer" class="bg-gray-200">
+                    <div class="lightbox-caption p-6 text-lg font-bold">Gabor Ferrer <span class="text-gray-400 font-normal block text-sm">Gerente</span></div>
                 </div>
                 <!-- Lina Zupa -->
                 <div class="lightbox-item" onclick="openViewer('Lina Zupa', 'img/col-dis.webp', 'Con diseño, arte y pasión siempre creo una emoción', 'Artista Gráfica')">
-                    <img src="img/col-dis.webp" alt="Lina Zupa">
-                    <div class="lightbox-caption p-6">Lina Zupa <span class="text-gray-400 font-normal">Arte</span></div>
+                    <img src="img/col-dis.webp" alt="Lina Zupa" class="bg-gray-200">
+                    <div class="lightbox-caption p-6 text-lg font-bold">Lina Zupa <span class="text-gray-400 font-normal block text-sm">Arte</span></div>
                 </div>
                 <!-- Pau Landa -->
                 <div class="lightbox-item" onclick="openViewer('Pau Landa', 'img/col-pau.webp', 'De niña soñaba ingredientes bailar, saltando del fuego hasta el paladar.', 'Chef Ejecutivo')">
-                    <img src="img/col-pau.webp" alt="Pau Landa">
-                    <div class="lightbox-caption p-6 flex flex-col gap-2">
-                        <div>Pau Landa <span class="text-gray-400 font-normal">Chef</span></div>
-                        <a href="https://www.instagram.com/chefpaulanda/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-pink-600 hover:text-pink-800 transition-colors" onclick="event.stopPropagation()">
+                    <img src="img/col-pau.webp" alt="Pau Landa" class="bg-gray-200">
+                    <div class="lightbox-caption p-6 flex flex-col gap-2 text-lg font-bold">
+                        <div>Pau Landa <span class="text-gray-400 font-normal block text-sm">Chef</span></div>
+                        <a href="https://www.instagram.com/chefpaulanda/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-pink-600 hover:text-pink-800 transition-colors mt-2" onclick="event.stopPropagation()">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             ¡Nos encontramos en Instagram!
                         </a>
                     </div>
                 </div>
                 <!-- Sam Noli -->
-                <div class="lightbox-item" onclick="openViewer('Sam Noli', 'img/col-sam.webp', 'Alegría da la comida en cada plato de cada día', 'Chef Ejecutivo')">
-                    <img src="img/col-sam.webp" alt="Sam Noli">
-                    <div class="lightbox-caption p-6">Sam Noli <span class="text-gray-400 font-normal">Chef</span></div>
+                <div class="lightbox-item hidden md:block" onclick="openViewer('Sam Noli', 'img/col-sam.webp', 'Alegría da la comida en cada plato de cada día', 'Chef Ejecutivo')">
+                    <img src="img/col-sam.webp" alt="Sam Noli" class="bg-gray-200">
+                    <div class="lightbox-caption p-6 text-lg font-bold">Sam Noli <span class="text-gray-400 font-normal block text-sm">Chef</span></div>
                 </div>
             </div>
+            <!-- Extra fix for Sam Noli on mobile so it doesn't break grid -->
+             <div class="md:hidden mt-8 max-w-[1400px] w-full mx-auto">
+                 <div class="lightbox-item" onclick="openViewer('Sam Noli', 'img/col-sam.webp', 'Alegría da la comida en cada plato de cada día', 'Chef Ejecutivo')">
+                    <img src="img/col-sam.webp" alt="Sam Noli" class="bg-gray-200">
+                    <div class="lightbox-caption p-6 text-lg font-bold">Sam Noli <span class="text-gray-400 font-normal block text-sm">Chef</span></div>
+                </div>
+             </div>
         </section>
 
         <!-- SECCIÓN MENÚ -->
-        <section id="menu" class="section-content py-24 text-center">
-            <h1 class="text-6xl font-black tracking-tighter mb-8">Personaliza tu Banquete</h1>
-            <p class="text-xl mb-6 font-bold">¿Cuántos invitados tienes en tu evento?</p>
-            <div class="flex justify-center gap-4 mb-12">
+        <section id="menu" class="section-content py-16 md:py-24 text-center">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-8">Personaliza tu Banquete</h1>
+            <p class="text-lg md:text-xl mb-6 font-bold">¿Cuántos invitados tienes en tu evento?</p>
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
                 <button onclick="setGuests(20)" id="guest-20" class="btn-logic" style="background-color: #f74780;">20 invitados</button>
                 <button onclick="setGuests(30)" id="guest-30" class="btn-logic" style="background-color: #ffc15d;">30 invitados</button>
                 <button onclick="setGuests(40)" id="guest-40" class="btn-logic" style="background-color: #fa8fb1;">40 invitados</button>
             </div>
-            <div id="chef-selection-area" class="hidden">
-                <p class="text-xl mb-6 font-bold">Elige a tu chef</p>
-                <div class="flex justify-center gap-4 mb-16">
+            
+            <div id="chef-selection-area" class="hidden w-full">
+                <p class="text-lg md:text-xl mb-6 font-bold">Elige a tu chef</p>
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 md:mb-16">
                     <button onclick="setChef('pau')" id="btn-chef-pau" class="btn-logic" style="background-color: #a87bc7;">Chef Pau Landa</button>
                     <button onclick="setChef('sam')" id="btn-chef-sam" class="btn-logic" style="background-color: #78a3d4;">Chef Sam Noli</button>
                 </div>
-                <div id="row-pau" class="menu-grid-row chef-disabled">
-                    <div class="food-card"><img src="img/menu-sopa01.webp" alt="Sopa"><div class="food-info"><p class="font-bold">Sopa Azteca</p><p class="text-dorado">$110 MXN</p></div></div>
-                    <div class="food-card"><img src="img/menu-tinga01.webp" alt="Tinga"><div class="food-info"><p class="font-bold">Tinga de Pollo</p><p class="text-dorado">$110 MXN</p></div></div>
-                    <div class="food-card"><img src="img/menu-arroz01.webp" alt="Arroz"><div class="food-info"><p class="font-bold">Arroz con Leche</p><p class="text-dorado">$90 MXN</p></div></div>
+                
+                <div id="row-pau" class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto mb-8 chef-disabled">
+                    <div class="food-card"><img src="img/menu-sopa01.webp" alt="Sopa"><div class="food-info text-left"><p class="font-bold text-lg">Sopa Azteca</p><p class="text-[var(--dorado)] font-bold">$110 MXN</p></div></div>
+                    <div class="food-card"><img src="img/menu-tinga01.webp" alt="Tinga"><div class="food-info text-left"><p class="font-bold text-lg">Tinga de Pollo</p><p class="text-[var(--dorado)] font-bold">$110 MXN</p></div></div>
+                    <div class="food-card"><img src="img/menu-arroz01.webp" alt="Arroz"><div class="food-info text-left"><p class="font-bold text-lg">Arroz con Leche</p><p class="text-[var(--dorado)] font-bold">$90 MXN</p></div></div>
                 </div>
-                <div id="row-sam" class="menu-grid-row chef-disabled">
-                    <div class="food-card"><img src="img/menu-pozole01.webp" alt="Pozole"><div class="food-info"><p class="font-bold">Pozole potosino</p><p class="text-dorado">$100 MXN</p></div></div>
-                    <div class="food-card"><img src="img/menu-lomo01.webp" alt="Lomo"><div class="food-info"><p class="font-bold">Lomo en Ciruela</p><p class="text-dorado">$130 MXN</p></div></div>
-                    <div class="food-card"><img src="img/menu-pastel01.webp" alt="Pastel"><div class="food-info"><p class="font-bold">Pastel de Frutos Rojos</p><p class="text-dorado">$110 MXN</p></div></div>
+                
+                <div id="row-sam" class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto mb-8 chef-disabled">
+                    <div class="food-card"><img src="img/menu-pozole01.webp" alt="Pozole"><div class="food-info text-left"><p class="font-bold text-lg">Pozole potosino</p><p class="text-[var(--dorado)] font-bold">$100 MXN</p></div></div>
+                    <div class="food-card"><img src="img/menu-lomo01.webp" alt="Lomo"><div class="food-info text-left"><p class="font-bold text-lg">Lomo en Ciruela</p><p class="text-[var(--dorado)] font-bold">$130 MXN</p></div></div>
+                    <div class="food-card"><img src="img/menu-pastel01.webp" alt="Pastel"><div class="food-info text-left"><p class="font-bold text-lg">Pastel de Frutos Rojos</p><p class="text-[var(--dorado)] font-bold">$110 MXN</p></div></div>
                 </div>
-                <div class="max-w-3xl mx-auto mt-16 p-12 bg-white rounded-[3rem] shadow-sm text-left">
-                    <h3 class="text-2xl font-black mb-6 border-b pb-4">Resumen del Banquete</h3>
-                    <div id="summary-details" class="space-y-3 text-lg mb-8"></div>
-                    <div class="mt-8 pt-6 border-t flex justify-between items-center">
-                        <div><p class="text-gray-400 text-sm">* Precios antes de impuestos</p><p class="text-3xl font-black mt-2">Subtotal: <span id="menu-total-val">$0</span></p></div>
-                        <div class="flex gap-2">
-                            <button onclick="divideMenu(1)" class="btn-logic !text-xs !px-4" style="background-color: #4b8352;">Yo invito</button>
-                            <button onclick="divideMenu(2)" class="btn-logic !text-xs !px-4" style="background-color: #6f9f6d;">2 amigas</button>
-                            <button onclick="divideMenu(3)" class="btn-logic !text-xs !px-4" style="background-color: #88b586;">3 amigas</button>
-                            <button onclick="divideMenu(4)" class="btn-logic !text-xs !px-4" style="background-color: #bad6b5;">4 amigas</button>
+
+                <div class="max-w-3xl mx-auto mt-12 md:mt-16 p-6 md:p-12 bg-white rounded-[2rem] shadow-sm text-left border border-gray-100">
+                    <h3 class="text-xl md:text-2xl font-black mb-6 border-b pb-4">Resumen del Banquete</h3>
+                    <div id="summary-details" class="space-y-3 text-md md:text-lg mb-8 font-medium"></div>
+                    <div class="mt-8 pt-6 border-t flex flex-col md:flex-row justify-between md:items-end gap-6">
+                        <div>
+                            <p class="text-gray-400 text-xs md:text-sm uppercase tracking-wider">* Precios antes de impuestos</p>
+                            <p class="text-2xl md:text-3xl font-black mt-2">Subtotal: <span id="menu-total-val" class="text-[var(--green-active)]">$0</span></p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 md:justify-end">
+                            <button onclick="divideMenu(1)" class="btn-logic !text-xs !px-4 !py-2" style="background-color: #4b8352;">Yo invito</button>
+                            <button onclick="divideMenu(2)" class="btn-logic !text-xs !px-4 !py-2" style="background-color: #6f9f6d;">2 amigas</button>
+                            <button onclick="divideMenu(3)" class="btn-logic !text-xs !px-4 !py-2" style="background-color: #88b586;">3 amigas</button>
+                            <button onclick="divideMenu(4)" class="btn-logic !text-xs !px-4 !py-2" style="background-color: #bad6b5;">4 amigas</button>
                         </div>
                     </div>
-                    <div id="split-result" class="mt-6 text-xl font-bold text-verde-profundo text-center hidden">Cada una aporta: <span id="split-val">$0</span></div>
-                    <div class="text-center mt-12"><button class="btn-final-quote" onclick="showSection('cotizacion')">Quiero ver mi cotización final</button></div>
+                    <div id="split-result" class="mt-6 p-4 bg-green-50 rounded-xl text-lg md:text-xl font-bold text-[var(--verde-profundo)] text-center hidden border border-green-100">Cada una aporta: <span id="split-val">$0</span></div>
+                    <div class="text-center mt-10 md:mt-12"><button class="btn-final-quote" onclick="showSection('cotizacion')">Quiero ver mi cotización final</button></div>
                 </div>
             </div>
         </section>
 
         <!-- SECCIÓN MOBILIARIO -->
-        <section id="mobiliario" class="section-content py-24">
-            <h1 class="text-6xl font-black text-center mb-16">Mobiliario</h1>
-            <div class="lightbox-grid">
-                <div class="lightbox-item"><img src="img/mob-mesasysillas.webp" alt="Mesa Sillas"><div class="lightbox-caption p-6 flex justify-between items-center"><span>Mesa + 10 Sillas ($800)</span><input type="number" id="qty-mesa-sillas" onchange="furn_update()" data-price="800" data-name="Mesa + 10 Sillas" value="0" min="0" class="qty-input"></div></div>
-                <div class="lightbox-item"><img src="img/mob-mesa.webp" alt="Mesa Extra"><div class="lightbox-caption p-6 flex justify-between items-center"><span>Mesas Extras ($150)</span><input type="number" onchange="furn_update()" data-price="150" data-name="Mesas Extras" value="0" min="0" class="qty-input"></div></div>
-                <div class="lightbox-item"><img src="img/mob-sillas.webp" alt="Sillas Extra"><div class="lightbox-caption p-6 flex justify-between items-center"><span>Sillas Extras ($40)</span><input type="number" onchange="furn_update()" data-price="40" data-name="Sillas Extras" value="0" min="0" class="qty-input"></div></div>
-                <div class="lightbox-item"><img src="img/mob-pista.webp" alt="Pista Led"><div class="lightbox-caption p-6 flex justify-between items-center"><span>Pista Led ($1500)</span><input type="number" onchange="furn_update()" data-price="1500" data-name="Pista Led" value="0" min="0" max="1" class="qty-input"></div></div>
-                <div class="lightbox-item"><img src="img/mob-pantalla.webp" alt="Pantalla TV"><div class="lightbox-caption p-6 flex justify-between items-center"><span>Pantallas TV ($500)</span><input type="number" onchange="furn_update()" data-price="500" data-name="Pantallas TV" value="0" min="0" class="qty-input"></div></div>
-                <div class="lightbox-item"><img src="img/mob-bocina.webp" alt="Bocinas"><div class="lightbox-caption p-6 flex justify-between items-center"><span>Bocinas ($400)</span><input type="number" onchange="furn_update()" data-price="400" data-name="Bocinas" value="0" min="0" class="qty-input"></div></div>
+        <section id="mobiliario" class="section-content py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-black text-center mb-10 md:mb-16">Mobiliario</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto w-full">
+                <div class="lightbox-item flex flex-col"><img src="img/mob-mesasysillas.webp" alt="Mesa Sillas"><div class="lightbox-caption p-5 flex justify-between items-center mt-auto bg-white border-t border-gray-100"><span class="font-bold text-sm md:text-base">Mesa + 10 Sillas <br><span class="text-gray-400 font-normal">$800</span></span><input type="number" id="qty-mesa-sillas" onchange="furn_update()" data-price="800" data-name="Mesa + 10 Sillas" value="0" min="0" class="qty-input"></div></div>
+                <div class="lightbox-item flex flex-col"><img src="img/mob-mesa.webp" alt="Mesa Extra"><div class="lightbox-caption p-5 flex justify-between items-center mt-auto bg-white border-t border-gray-100"><span class="font-bold text-sm md:text-base">Mesas Extras <br><span class="text-gray-400 font-normal">$150</span></span><input type="number" onchange="furn_update()" data-price="150" data-name="Mesas Extras" value="0" min="0" class="qty-input"></div></div>
+                <div class="lightbox-item flex flex-col"><img src="img/mob-sillas.webp" alt="Sillas Extra"><div class="lightbox-caption p-5 flex justify-between items-center mt-auto bg-white border-t border-gray-100"><span class="font-bold text-sm md:text-base">Sillas Extras <br><span class="text-gray-400 font-normal">$40</span></span><input type="number" onchange="furn_update()" data-price="40" data-name="Sillas Extras" value="0" min="0" class="qty-input"></div></div>
+                <div class="lightbox-item flex flex-col"><img src="img/mob-pista.webp" alt="Pista Led"><div class="lightbox-caption p-5 flex justify-between items-center mt-auto bg-white border-t border-gray-100"><span class="font-bold text-sm md:text-base">Pista Led <br><span class="text-gray-400 font-normal">$1500</span></span><input type="number" onchange="furn_update()" data-price="1500" data-name="Pista Led" value="0" min="0" max="1" class="qty-input"></div></div>
+                <div class="lightbox-item flex flex-col"><img src="img/mob-pantalla.webp" alt="Pantalla TV"><div class="lightbox-caption p-5 flex justify-between items-center mt-auto bg-white border-t border-gray-100"><span class="font-bold text-sm md:text-base">Pantallas TV <br><span class="text-gray-400 font-normal">$500</span></span><input type="number" onchange="furn_update()" data-price="500" data-name="Pantallas TV" value="0" min="0" class="qty-input"></div></div>
+                <div class="lightbox-item flex flex-col"><img src="img/mob-bocina.webp" alt="Bocinas"><div class="lightbox-caption p-5 flex justify-between items-center mt-auto bg-white border-t border-gray-100"><span class="font-bold text-sm md:text-base">Bocinas <br><span class="text-gray-400 font-normal">$400</span></span><input type="number" onchange="furn_update()" data-price="400" data-name="Bocinas" value="0" min="0" class="qty-input"></div></div>
             </div>
-            <div class="max-w-3xl mx-auto mt-20 p-12 bg-white rounded-[3rem] shadow-sm text-left">
-                <h3 class="text-2xl font-black mb-6 border-b pb-4">Resumen de Mobiliario</h3>
-                <div id="furn-details-list" class="space-y-3 text-lg mb-8"></div>
-                <div class="mt-8 pt-6 border-t flex justify-between items-center">
-                    <div><p class="text-gray-400 text-sm">* Precios Antes de Impuestos</p><p class="text-3xl font-black mt-2">Subtotal: <span id="furn-total">$0</span></p></div>
-                    <div class="flex gap-2">
+            
+            <div class="max-w-3xl mx-auto mt-12 md:mt-20 p-6 md:p-12 bg-white rounded-[2rem] shadow-sm text-left border border-gray-100">
+                <h3 class="text-xl md:text-2xl font-black mb-6 border-b pb-4">Resumen de Mobiliario</h3>
+                <div id="furn-details-list" class="space-y-3 text-md md:text-lg mb-8 font-medium"></div>
+                <div class="mt-8 pt-6 border-t flex flex-col md:flex-row justify-between md:items-end gap-6">
+                    <div>
+                        <p class="text-gray-400 text-xs md:text-sm uppercase tracking-wider">* Precios Antes de Impuestos</p>
+                        <p class="text-2xl md:text-3xl font-black mt-2">Subtotal: <span id="furn-total" class="text-[var(--green-active)]">$0</span></p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 md:justify-end">
                         <button onclick="divideFurn(1)" class="btn-friend-mobiliario">Yo invito</button>
                         <button onclick="divideFurn(2)" class="btn-friend-mobiliario">2 amigas</button>
                         <button onclick="divideFurn(3)" class="btn-friend-mobiliario">3 amigas</button>
                         <button onclick="divideFurn(4)" class="btn-friend-mobiliario">4 amigas</button>
                     </div>
                 </div>
-                <div id="furn-split-result" class="mt-6 text-xl font-bold text-verde-profundo text-center hidden">Cada una aporta: <span id="furn-split-val">$0</span></div>
-                <div class="text-center mt-12"><button class="btn-final-quote" onclick="showSection('cotizacion')">Quiero ver mi cotización final</button></div>
+                <div id="furn-split-result" class="mt-6 p-4 bg-green-50 rounded-xl text-lg md:text-xl font-bold text-[var(--verde-profundo)] text-center hidden border border-green-100">Cada una aporta: <span id="furn-split-val">$0</span></div>
+                <div class="text-center mt-10 md:mt-12"><button class="btn-final-quote" onclick="showSection('cotizacion')">Quiero ver mi cotización final</button></div>
             </div>
         </section>
 
         <!-- SECCIÓN COTIZACIÓN -->
-        <section id="cotizacion" class="section-content py-32 text-center">
-            <h1 class="text-5xl font-black tracking-tighter mb-12">Aquí tienes tu Cotización Final</h1>
-            <div class="hero-container relative max-w-[1100px] mx-auto rounded-[2rem] overflow-hidden shadow-2xl mb-16">
-                <img src="img/port_equipo01.webp" alt="Imagen Cotización" class="w-full h-[600px] object-cover">
+        <section id="cotizacion" class="section-content py-16 md:py-24 text-center">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-10 md:mb-12">Aquí tienes tu Cotización Final</h1>
+            <div class="hero-container relative max-w-[1100px] w-full mx-auto rounded-3xl md:rounded-[2rem] overflow-hidden shadow-xl mb-10 md:mb-16">
+                <img src="img/port_equipo01.webp" alt="Imagen Cotización" class="w-full h-[300px] md:h-[500px] object-cover bg-gray-200">
             </div>
 
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 text-left mb-16" id="quote-to-pdf">
-                <div class="bg-white p-12 rounded-[2.5rem] shadow-sm">
+            <!-- Contenedor a exportar en PDF -->
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-16" id="quote-to-pdf">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-gray-100">
                     <h3 class="text-xl font-black mb-6 border-b pb-4">Validación del Evento</h3>
+                    
                     <label class="text-xs font-bold text-gray-400 uppercase mb-2 block">Nombre y Apellido:</label>
-                    <input type="text" id="quote-username" placeholder="Solo letras y números" maxlength="50" class="w-full mb-2 p-4 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:ring-2 focus:ring-[#ffa424]">
-                    <div id="name-error" class="validation-error">Error: No se permiten caracteres especiales.</div>
+                    <input type="text" id="quote-username" placeholder="Nombre completo" maxlength="50" class="w-full mb-2 p-4 rounded-xl border border-gray-200 bg-gray-50 outline-none focus:ring-2 focus:ring-[#ffa424] transition-all">
+                    <div id="name-error" class="validation-error">Error: Ingrese un nombre válido.</div>
                     
                     <label class="text-xs font-bold text-gray-400 uppercase mb-2 block mt-4">Correo Electrónico:</label>
-                    <input type="email" id="quote-email" placeholder="Debe incluir @" class="w-full mb-2 p-4 rounded-xl border border-gray-100 bg-gray-50 outline-none focus:ring-2 focus:ring-[#ffa424]">
+                    <input type="email" id="quote-email" placeholder="ejemplo@correo.com" class="w-full mb-2 p-4 rounded-xl border border-gray-200 bg-gray-50 outline-none focus:ring-2 focus:ring-[#ffa424] transition-all">
                     <div id="email-error" class="validation-error">Error: Ingrese un correo válido con @.</div>
                     
-                    <div class="mt-12 p-8 bg-[#f9f9fb] rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="mt-8 md:mt-12 p-6 md:p-8 bg-[#f9f9fb] rounded-2xl border border-gray-100 shadow-inner">
                         <p class="text-[10px] font-black text-gray-400 uppercase mb-3 text-center tracking-[0.2em]">Identificador Único del Folio</p>
                         <div id="quote-id-display">-- / -- / ---- ---- ---</div>
                     </div>
                 </div>
 
-                <div class="bg-white p-12 rounded-[2.5rem] shadow-sm">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-gray-100">
                     <h3 class="text-xl font-black mb-6 border-b pb-4">Inversión Detallada</h3>
-                    <div class="space-y-6" id="invoice-details-content"></div>
+                    <div class="space-y-6" id="invoice-details-content">
+                        <p class="text-gray-400 text-sm text-center">Aún no has configurado tu evento. Visita las secciones Menú y Mobiliario.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-6 no-print">
-                <button onclick="generateOfficialQuote()" class="btn-generate-folio">Generar número único</button>
-                <button onclick="downloadPDF()" class="bg-[#89cff0] text-white px-10 py-4 rounded-full font-bold uppercase text-xs shadow-lg hover:brightness-105 transition-all">Descargar PDF</button>
-                <button onclick="sendQuoteEmail()" class="bg-[#D4AF37] text-white px-10 py-4 rounded-full font-bold uppercase text-xs shadow-lg">Enviar a mi email</button>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 no-print">
+                <button onclick="generateOfficialQuote()" class="btn-generate-folio w-full md:w-auto">Generar Número</button>
+                <button onclick="downloadPDF()" class="bg-[#89cff0] text-white px-10 py-4 rounded-full font-bold uppercase text-xs shadow-lg hover:brightness-105 transition-all w-full md:w-auto">Descargar PDF</button>
+                <button onclick="sendQuoteEmail()" class="bg-[#D4AF37] text-white px-10 py-4 rounded-full font-bold uppercase text-xs shadow-lg hover:brightness-105 transition-all w-full md:w-auto">Enviar a mi email</button>
             </div>
             
-            <div id="email-notif" class="mt-12 text-verde-profundo font-bold hidden bg-green-50 p-8 rounded-[2rem] max-w-3xl mx-auto border border-green-100">
-                Gracias por cotizar con nosotros, hemos enviado un mail a nuestro administrador en Jardín San Jako con tu cotización para a agendar una visita y aclarar cualquier duda que tengas.
+            <div id="email-notif" class="mt-10 text-verde-profundo font-bold hidden bg-green-50 p-6 md:p-8 rounded-2xl max-w-2xl mx-auto border border-green-200 shadow-sm">
+                ¡Gracias por cotizar con nosotros! Hemos enviado un mail a nuestro administrador en Jardín San Jako con tu cotización para agendar una visita y aclarar cualquier duda.
             </div>
         </section>
 
         <!-- SECCIÓN EVENTOS -->
-        <section id="eventos" class="section-content py-32 text-center">
-            <h1 class="text-7xl font-black tracking-tighter mb-16">Eventos</h1>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 px-6">
+        <section id="eventos" class="section-content py-16 md:py-32 text-center">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-10 md:mb-16">Eventos</h1>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 w-full">
                 <!-- Video 1 -->
                 <div class="video-container group">
-                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl bg-white aspect-video border border-gray-100">
+                    <div class="relative overflow-hidden rounded-[2rem] shadow-xl bg-gray-100 aspect-video border border-gray-200">
                         <video controls class="w-full h-full object-cover">
                             <source src="vid/jardinnovia01.webm" type="video/webm">
                             Tu navegador no soporta video.
                         </video>
                     </div>
-                    <p class="mt-6 text-2xl font-light text-gray-500 italic">"¡Feliz en San Jako festejando mi Boda!"</p>
+                    <p class="mt-6 text-xl md:text-2xl font-light text-gray-500 italic px-4">"¡Feliz en San Jako festejando mi Boda!"</p>
                 </div>
                 <!-- Video 2 -->
                 <div class="video-container group">
-                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl bg-white aspect-video border border-gray-100">
+                    <div class="relative overflow-hidden rounded-[2rem] shadow-xl bg-gray-100 aspect-video border border-gray-200">
                         <video controls class="w-full h-full object-cover">
                             <source src="vid/jardinpizza01.webm" type="video/webm">
                         </video>
                     </div>
-                    <p class="mt-6 text-2xl font-light text-gray-500 italic">"¡Vamos México... en San Jako cuando México juega jugamos todos!"</p>
+                    <p class="mt-6 text-xl md:text-2xl font-light text-gray-500 italic px-4">"¡Vamos México... en San Jako cuando México juega jugamos todos!"</p>
                 </div>
             </div>
         </section>
 
         <!-- SECCIÓN UBICACIÓN -->
-        <section id="ubicacion" class="section-content py-32 text-center">
-            <h1 class="text-6xl font-black mb-4">Ubicación</h1>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 text-left px-4">
-                <div class="space-y-8 bg-white p-12 rounded-[2.5rem] shadow-sm">
-                    <div><h3 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Dirección</h3><p class="text-2xl font-bold">Av Toluca 5, Fracc. Rancho San Joaquin, 54980 Tultepec, Méx.</p></div>
-                    <div><h3 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Contacto</h3><p class="text-xl font-bold text-verde-profundo">Tel: 55 2747 9639</p></div>
-                    <div class="grid grid-cols-2 gap-y-2 text-sm">
+        <section id="ubicacion" class="section-content py-16 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-10 md:mb-16">Ubicación</h1>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-left w-full">
+                <div class="space-y-8 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-gray-100">
+                    <div><h3 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Dirección</h3><p class="text-xl md:text-2xl font-bold leading-snug">Av Toluca 5, Fracc. Rancho San Joaquin, 54980 Tultepec, Méx.</p></div>
+                    <div><h3 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Contacto</h3><p class="text-xl font-bold text-[var(--verde-profundo)]">Tel: 55 2747 9639</p></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-2 text-sm mt-4 bg-gray-50 p-6 rounded-2xl">
                         <span class="font-bold">Lunes-Miércoles:</span> <span>8:00 a.m. – 12:30 p.m.</span>
                         <span class="font-bold">Jueves-Viernes:</span> <span>8:30 a.m. – 12:30 p.m.</span>
                         <span class="font-bold">Sábado-Domingo:</span> <span>8:30 – 9:30 a.m.</span>
                     </div>
                 </div>
-                <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-[550px] cursor-pointer" onclick="window.open('https://www.google.com/maps/dir//Av+Toluca+5,+Rancho+San+Joaqu%C3%ADn,+54980+Tultepec', '_blank')">
+                <div class="rounded-[2.5rem] overflow-hidden shadow-xl h-[400px] md:h-[550px] cursor-pointer border border-gray-100" onclick="window.open('https://www.google.com/maps/dir//Av+Toluca+5,+Rancho+San+Joaqu%C3%ADn,+54980+Tultepec', '_blank')">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.776634863375!2d-99.12467432423377!3d19.722137981615525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d18d098e987c2b%3A0x6e90218f2603348!2sAv%20Toluca%205%2C%20San%20Joaqu%C3%ADn%2C%2054980%20Tultepec%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1714151234567!5m2!1ses!2smx" width="100%" height="100%" style="border:0; pointer-events:none;"></iframe>
                 </div>
             </div>
@@ -368,16 +406,20 @@
 
     <footer></footer>
 
-    <!-- VISOR -->
+    <!-- VISOR (MODAL) -->
     <div id="expanded-viewer">
-        <div class="viewer-container flex items-center justify-center h-full">
-            <div class="viewer-content-box">
-                <div class="viewer-img-box bg-gray-50"><img id="view-img" src="" class="w-full h-full object-cover"></div>
-                <div class="viewer-text p-20 flex flex-col justify-center">
-                    <h2 id="view-title" class="text-5xl font-black mb-4"></h2>
-                    <p id="view-func" class="text-xl font-light text-gray-500 mb-2"></p>
-                    <p id="view-pos" class="text-sm font-bold text-dorado uppercase tracking-widest mb-10"></p>
-                    <button class="btn-close-viewer self-start" onclick="closeViewer()">Cerrar</button>
+        <div class="viewer-container flex items-center justify-center h-full w-full p-4 md:p-10">
+            <div class="viewer-content-box flex flex-col md:flex-row w-full max-w-5xl h-[85vh] md:h-[80vh] bg-white rounded-[2rem] shadow-2xl overflow-hidden relative">
+                <!-- Imagen -->
+                <div class="w-full md:w-1/2 h-[45%] md:h-full bg-gray-100">
+                    <img id="view-img" src="" class="w-full h-full object-cover">
+                </div>
+                <!-- Texto -->
+                <div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center overflow-y-auto">
+                    <h2 id="view-title" class="text-3xl md:text-5xl font-black mb-4 text-gray-900"></h2>
+                    <p id="view-func" class="text-lg md:text-xl font-light text-gray-600 mb-4 italic leading-relaxed"></p>
+                    <p id="view-pos" class="text-xs md:text-sm font-bold text-[var(--dorado)] uppercase tracking-widest mb-10"></p>
+                    <button class="bg-[var(--azul-boton)] text-[var(--apple-text)] px-8 py-3 rounded-full font-bold uppercase text-sm self-start hover:brightness-95 transition" onclick="closeViewer()">Cerrar Perfil</button>
                 </div>
             </div>
         </div>
@@ -407,6 +449,10 @@
                 furn_update();
             }
             if(currentChef) updateMenuSummary();
+            
+            // Visual feedback for guest buttons
+            document.querySelectorAll('#guest-20, #guest-30, #guest-40').forEach(btn => btn.style.opacity = "0.4");
+            document.getElementById(`guest-${num}`).style.opacity = "1";
         }
 
         function setChef(chef) {
@@ -423,13 +469,13 @@
             
             let html = '';
             if(currentChef === 'pau') {
-                html = `<div class="flex justify-between"><span>Sopa Azteca (${guests} serv.)</span><span>$${(guests*110).toLocaleString()}</span></div>
-                        <div class="flex justify-between"><span>Tinga de Pollo (${guests} serv.)</span><span>$${(guests*110).toLocaleString()}</span></div>
-                        <div class="flex justify-between"><span>Arroz con Leche (${guests} serv.)</span><span>$${(guests*90).toLocaleString()}</span></div>`;
+                html = `<div class="flex justify-between border-b border-gray-50 pb-2"><span>Sopa Azteca (${guests} serv.)</span><span class="font-bold">$${(guests*110).toLocaleString()}</span></div>
+                        <div class="flex justify-between border-b border-gray-50 pb-2"><span>Tinga de Pollo (${guests} serv.)</span><span class="font-bold">$${(guests*110).toLocaleString()}</span></div>
+                        <div class="flex justify-between"><span>Arroz con Leche (${guests} serv.)</span><span class="font-bold">$${(guests*90).toLocaleString()}</span></div>`;
             } else if(currentChef === 'sam') {
-                html = `<div class="flex justify-between"><span>Pozole Potosino (${guests} serv.)</span><span>$${(guests*100).toLocaleString()}</span></div>
-                        <div class="flex justify-between"><span>Lomo en Ciruela (${guests} serv.)</span><span>$${(guests*130).toLocaleString()}</span></div>
-                        <div class="flex justify-between"><span>Pastel Frutos Rojos (${guests} serv.)</span><span>$${(guests*110).toLocaleString()}</span></div>`;
+                html = `<div class="flex justify-between border-b border-gray-50 pb-2"><span>Pozole Potosino (${guests} serv.)</span><span class="font-bold">$${(guests*100).toLocaleString()}</span></div>
+                        <div class="flex justify-between border-b border-gray-50 pb-2"><span>Lomo en Ciruela (${guests} serv.)</span><span class="font-bold">$${(guests*130).toLocaleString()}</span></div>
+                        <div class="flex justify-between"><span>Pastel Frutos Rojos (${guests} serv.)</span><span class="font-bold">$${(guests*110).toLocaleString()}</span></div>`;
             }
             document.getElementById('summary-details').innerHTML = html;
         }
@@ -440,12 +486,12 @@
                 const qty = parseInt(input.value) || 0;
                 if(qty > 0) {
                     const sub = qty * parseFloat(input.dataset.price); total += sub;
-                    detailHTML += `<div class="flex justify-between"><span>${input.dataset.name} (${qty})</span><span>$${sub.toLocaleString()}</span></div>`;
+                    detailHTML += `<div class="flex justify-between border-b border-gray-50 pb-2"><span>${input.dataset.name} (${qty})</span><span class="font-bold">$${sub.toLocaleString()}</span></div>`;
                 }
             });
             furnSub = total;
             document.getElementById('furn-total').innerText = `$${total.toLocaleString()}`;
-            document.getElementById('furn-details-list').innerHTML = detailHTML || '<p class="text-center text-gray-400">Sin artículos seleccionados.</p>';
+            document.getElementById('furn-details-list').innerHTML = detailHTML || '<p class="text-center text-gray-400 italic">Sin artículos seleccionados.</p>';
         }
 
         function divideMenu(n) { document.getElementById('split-val').innerText = `$${Math.round(menuSub/n).toLocaleString()}`; document.getElementById('split-result').classList.remove('hidden'); }
@@ -454,35 +500,48 @@
         function syncQuoteData() {
             let detailArea = document.getElementById('invoice-details-content');
             if(!detailArea) return;
+            
+            if(menuSub === 0 && furnSub === 0) {
+                detailArea.innerHTML = '<p class="text-gray-400 text-sm text-center">Aún no has configurado tu evento. Visita las secciones Menú y Mobiliario.</p>';
+                return;
+            }
+
             let mD = '';
             if(currentChef === 'pau') {
-                mD += `<tr><td>Sopa Azteca</td><td class="text-right">${guests}</td><td class="text-right">$${(guests*110).toLocaleString()}</td></tr>`;
-                mD += `<tr><td>Tinga de Pollo</td><td class="text-right">${guests}</td><td class="text-right">$${(guests*110).toLocaleString()}</td></tr>`;
-                mD += `<tr><td>Arroz con Leche</td><td class="text-right">${guests}</td><td class="text-right">$${(guests*90).toLocaleString()}</td></tr>`;
+                mD += `<tr><td>Sopa Azteca</td><td class="text-right">${guests}</td><td class="text-right font-bold">$${(guests*110).toLocaleString()}</td></tr>`;
+                mD += `<tr><td>Tinga de Pollo</td><td class="text-right">${guests}</td><td class="text-right font-bold">$${(guests*110).toLocaleString()}</td></tr>`;
+                mD += `<tr><td>Arroz con Leche</td><td class="text-right">${guests}</td><td class="text-right font-bold">$${(guests*90).toLocaleString()}</td></tr>`;
             } else if(currentChef === 'sam') {
-                mD += `<tr><td>Pozole Potosino</td><td class="text-right">${guests}</td><td class="text-right">$${(guests*100).toLocaleString()}</td></tr>`;
-                mD += `<tr><td>Lomo en Ciruela</td><td class="text-right">${guests}</td><td class="text-right">$${(guests*130).toLocaleString()}</td></tr>`;
-                mD += `<tr><td>Pastel Frutos Rojos</td><td class="text-right">${guests}</td><td class="text-right">$${(guests*110).toLocaleString()}</td></tr>`;
+                mD += `<tr><td>Pozole Potosino</td><td class="text-right">${guests}</td><td class="text-right font-bold">$${(guests*100).toLocaleString()}</td></tr>`;
+                mD += `<tr><td>Lomo en Ciruela</td><td class="text-right">${guests}</td><td class="text-right font-bold">$${(guests*130).toLocaleString()}</td></tr>`;
+                mD += `<tr><td>Pastel Frutos Rojos</td><td class="text-right">${guests}</td><td class="text-right font-bold">$${(guests*110).toLocaleString()}</td></tr>`;
             }
             const ivaM = menuSub * 0.16;
+            
             let fD = '';
             document.querySelectorAll('#mobiliario .qty-input').forEach(input => {
                 const q = parseInt(input.value) || 0;
-                if(q > 0) { fD += `<tr><td>${input.dataset.name}</td><td class="text-right">${q}</td><td class="text-right">$${(q*parseFloat(input.dataset.price)).toLocaleString()}</td></tr>`; }
+                if(q > 0) { fD += `<tr><td>${input.dataset.name}</td><td class="text-right">${q}</td><td class="text-right font-bold">$${(q*parseFloat(input.dataset.price)).toLocaleString()}</td></tr>`; }
             });
             const ivaF = furnSub * 0.16;
 
             detailArea.innerHTML = `
-                <div><h4 class="text-xs font-black text-pink-500 uppercase mb-3">Sección Banquete</h4>
+                ${menuSub > 0 ? `<div><h4 class="text-[10px] font-black text-pink-500 uppercase mb-3 tracking-widest">Sección Banquete</h4>
                 <table class="invoice-table"><tbody>${mD}</tbody></table>
-                <div class="flex justify-between text-sm mt-3"><span>Subtotal Sección:</span><span>$${menuSub.toLocaleString()}</span></div>
-                <div class="flex justify-between text-xs text-gray-400 italic"><span>IVA (16%):</span><span>$${Math.round(ivaM).toLocaleString()}</span></div></div>
-                <div class="pt-4 border-t border-gray-50"><h4 class="text-xs font-black text-blue-500 uppercase mb-3">Sección Mobiliario</h4>
+                <div class="flex justify-between text-sm mt-3 pt-2"><span>Subtotal Sección:</span><span class="font-bold">$${menuSub.toLocaleString()}</span></div>
+                <div class="flex justify-between text-xs text-gray-400 italic mt-1"><span>IVA (16%):</span><span>$${Math.round(ivaM).toLocaleString()}</span></div></div>` : ''}
+                
+                ${furnSub > 0 ? `<div class="${menuSub > 0 ? 'pt-6 border-t border-gray-100 mt-4' : ''}"><h4 class="text-[10px] font-black text-blue-500 uppercase mb-3 tracking-widest">Sección Mobiliario</h4>
                 <table class="invoice-table"><tbody>${fD}</tbody></table>
-                <div class="flex justify-between text-sm mt-3"><span>Subtotal Sección:</span><span>$${furnSub.toLocaleString()}</span></div>
-                <div class="flex justify-between text-xs text-gray-400 italic"><span>IVA (16%):</span><span>$${Math.round(ivaF).toLocaleString()}</span></div></div>
-                <div class="pt-6 border-t-4 border-gray-100 mt-6"><div class="flex justify-between items-end"><span class="text-gray-400 font-bold uppercase text-xs">Gran Total Inversión</span>
-                <span class="text-4xl font-black text-[#608334]">$${Math.round((menuSub+ivaM)+(furnSub+ivaF)).toLocaleString()}</span></div></div>
+                <div class="flex justify-between text-sm mt-3 pt-2"><span>Subtotal Sección:</span><span class="font-bold">$${furnSub.toLocaleString()}</span></div>
+                <div class="flex justify-between text-xs text-gray-400 italic mt-1"><span>IVA (16%):</span><span>$${Math.round(ivaF).toLocaleString()}</span></div></div>` : ''}
+                
+                <div class="pt-6 border-t-2 border-gray-200 mt-6 bg-gray-50 p-4 rounded-xl">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 font-bold uppercase text-xs tracking-widest">Gran Total</span>
+                        <span class="text-3xl md:text-4xl font-black text-[#608334]">$${Math.round((menuSub+ivaM)+(furnSub+ivaF)).toLocaleString()}</span>
+                    </div>
+                </div>
             `;
         }
 
@@ -491,40 +550,66 @@
             const emailF = document.getElementById('quote-email');
             const errorN = document.getElementById('name-error');
             const errorE = document.getElementById('email-error');
-            errorN.style.display = 'none'; errorE.style.display = 'none';
+            
+            errorN.style.display = 'none'; 
+            errorE.style.display = 'none';
 
-            const nameRegex = /^[a-zA-Z0-9\s]+$/;
-            if(!nameRegex.test(userF.value.trim())) { errorN.style.display = 'block'; return; }
-            if(!emailF.value.includes('@')) { errorE.style.display = 'block'; return; }
+            // Fixed Regex to allow Spanish characters and spaces
+            const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ0-9\s]+$/;
+            
+            if(userF.value.trim() === '' || !nameRegex.test(userF.value.trim())) { 
+                errorN.style.display = 'block'; 
+                return; 
+            }
+            if(!emailF.value.includes('@')) { 
+                errorE.style.display = 'block'; 
+                return; 
+            }
 
-            const cleanU = userF.value.replace(/\s/g, "").substring(0, 50);
+            const cleanU = userF.value.replace(/\s/g, "").substring(0, 15).toUpperCase();
             const d = new Date();
             const dateStr = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
             const dayKey = `folio_108_${d.getDate()}${d.getMonth()}${d.getFullYear()}`;
             let count = parseInt(localStorage.getItem(dayKey)) || 0;
-            const folioStr = String(count).padStart(3, '0');
+            const folioStr = String(count + 1).padStart(3, '0');
             
-            document.getElementById('quote-id-display').innerText = `${dateStr}${cleanU}${folioStr}`;
+            document.getElementById('quote-id-display').innerText = `${dateStr} - ${cleanU} - ${folioStr}`;
             localStorage.setItem(dayKey, count + 1);
         }
 
         function downloadPDF() { 
             const element = document.getElementById('quote-to-pdf');
+            // Force desktop layout for PDF generation so it doesn't look messy if downloaded from a phone
             const opt = { 
                 margin: 10, 
                 filename: `Cotizacion_SanJako.pdf`, 
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, windowWidth: 1024 }, 
                 jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' } 
             };
             html2pdf().set(opt).from(element).save(); 
         }
-        function sendQuoteEmail() { if(document.getElementById('quote-id-display').innerText.length > 10) document.getElementById('email-notif').classList.remove('hidden'); }
+
+        function sendQuoteEmail() { 
+            if(document.getElementById('quote-id-display').innerText.includes('-')) {
+                document.getElementById('email-notif').classList.remove('hidden'); 
+            } else {
+                alert("Por favor genera primero el número de folio.");
+            }
+        }
 
         function openViewer(t, i, f, p) {
-            document.getElementById('view-img').src = i; document.getElementById('view-title').innerText = t;
-            document.getElementById('view-func').innerText = f; document.getElementById('view-pos').innerText = p;
-            document.getElementById('expanded-viewer').style.display = 'block'; document.body.style.overflow = 'hidden';
+            document.getElementById('view-img').src = i; 
+            document.getElementById('view-title').innerText = t;
+            document.getElementById('view-func').innerText = f; 
+            document.getElementById('view-pos').innerText = p;
+            document.getElementById('expanded-viewer').style.display = 'block'; 
+            document.body.style.overflow = 'hidden';
         }
-        function closeViewer() { document.getElementById('expanded-viewer').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        function closeViewer() { 
+            document.getElementById('expanded-viewer').style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        }
 
         window.onload = () => showSection('inicio');
     </script>
